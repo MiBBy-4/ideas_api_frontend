@@ -1,10 +1,11 @@
+import { Typography } from '@mui/material';
 import IdeaList from './Idea/IdeaList';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>TEST</h1>
+        <Typography variant="h1">TEST</Typography>
         <hr />
         <IdeaList />
       </header>

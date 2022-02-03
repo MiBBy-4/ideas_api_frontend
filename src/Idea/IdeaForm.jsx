@@ -25,14 +25,14 @@ function IdeaForm(props) {
       method: 'POST',
       mode: 'cors',
       body: data,
-    }).then((response) => response.json())
-      .then((response) => props.updateIdeaList(response));
+    }).then((response) => response.json());
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  const handleSubmit = (event) => {
     formSubmit(event.target);
-  }
+    event.preventDefault();
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit} id="idea_form" autoComplete="off">

@@ -1,51 +1,41 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import IdeaItem from './IdeaItem';
 import IdeaForm from './IdeaForm';
 
 const apiURL = 'http://localhost:3000/api/v1/ideas';
 
-class IdeaList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-    };
-    this.updateIdeaList = this.updateIdeaList.bind(this);
-  }
+function IdeaList() {
+  const [items, setItems] = useState([]);
 
-  componentDidMount() {
-    this.getIdeas();
-  }
-
-  getIdeas() {
+  function getIdeas() {
     fetch(apiURL)
       .then((response) => response.json())
       .then((responseItems) => {
-        this.setState({
-          items: responseItems.reverse(),
-        });
+        setItems(responseItems.reverse());
       });
   }
 
-  updateIdeaList(item) {
-    let updatedItems = this.state.items;
+  useEffect(() => {
+    getIdeas();
+  });
+
+  function updateIdeaList(item) {
+    let updatedItems = items;
     updatedItems.unshift(item);
-    this.setState({
+    setItems({
       items: updatedItems,
     });
   }
 
-  render() {
-    return (
-      <div>
-        <IdeaForm apiURL={apiURL} updateIdeaList={this.updateIdeaList} />
-        <ul>
-          {this.state.items.map((item) => (
-            <IdeaItem key={item.id} item={item} />
-          ))}
-        </ul>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <IdeaForm apiURL={apiURL} updateIdeaList={updateIdeaList} />
+      <ul>
+        {items.map((item) => (
+          <IdeaItem key={item.id} item={item} />
+        ))}
+      </ul>
+    </div>
+  );
 }
 export default IdeaList;

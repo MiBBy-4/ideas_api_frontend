@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import IdeaItem from './IdeaItem';
 import IdeaForm from './IdeaForm';
-
-const apiURL = 'http://localhost:3000/api/v1/ideas';
+import { getIdeas } from './IdeaFetch';
 
 function IdeaList() {
   const [items, setItems] = useState([]);
 
-  function getIdeas() {
-    fetch(apiURL)
-      .then((response) => response.json())
-      .then((responseItems) => {
-        setItems(responseItems.reverse());
-      });
-  }
-
   useEffect(() => {
-    getIdeas();
+    getIdeas(setItems);
   });
 
   function updateIdeaList(item) {
@@ -29,7 +20,7 @@ function IdeaList() {
 
   return (
     <div>
-      <IdeaForm apiURL={apiURL} updateIdeaList={updateIdeaList} />
+      <IdeaForm updateIdeaList={updateIdeaList} />
       <ul>
         {items.map((item) => (
           <IdeaItem key={item.id} item={item} />

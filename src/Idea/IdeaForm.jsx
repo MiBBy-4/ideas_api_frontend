@@ -1,8 +1,9 @@
 import { TextField, Button } from '@mui/material';
 import { React, useState } from 'react';
+import { postFetchResponse } from './IdeaFetch';
 
 function IdeaForm(props) {
-  const [apiURL, setApiURL] = useState([props.apiURL]);
+  const [apiURL, setApiURL] = useState(process.env.REACT_APP_API_URL);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [problem, setProblem] = useState('');
@@ -11,21 +12,19 @@ function IdeaForm(props) {
   const [investor_requirements, setInvestorRequirements] = useState('');
 
   function handleIdeaChange(event) {
-    setName(event.target.value);
-    setDescription(event.target.value);
-    setProblem(event.target.value);
-    setSphere(event.target.value);
-    setGeoFocus(event.target.value);
-    setInvestorRequirements(event.target.value);
+    const { target: { value } } = event;
+    setName(event);
+    setDescription(event);
+    setProblem(event);
+    setSphere(event);
+    setGeoFocus(event);
+    setInvestorRequirements(event);
   }
 
   async function formSubmit(formData) {
     const data = new FormData(formData);
-    await fetch(apiURL, {
-      method: 'POST',
-      mode: 'cors',
-      body: data,
-    }).then((response) => response.json());
+    console.log('Inside formSubmit');
+    postFetchResponse(data);
   }
 
   const handleSubmit = (event) => {

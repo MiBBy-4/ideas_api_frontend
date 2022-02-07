@@ -5,9 +5,18 @@
     "jest": true
   },
   "rules": {
-    // suppress errors for missing 'import React' in files
    "react/react-in-jsx-scope": "off",
-    // allow jsx syntax in js files (for next.js project)
-   "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }] //should add ".ts" if typescript project
+   "react/destructuring-assignment": "off",
+   "react/prop-types": "off",
+   "react/no-unused-state": "off",
+   "eol-last": "off",
+   "no-underscore-dangle": "off",
+   "prefer-const": "off",
+   "react/jsx-no-bind": "off",
+   "react/no-access-state-in-setstate": "off",
+   "no-unused-vars": "off",
+   "camelcase" : "off",
+   "import/prefer-default-export": "off",
+   "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }

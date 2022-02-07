@@ -1,5 +1,4 @@
 export async function postFetchResponse(data) {
-  console.log('Inside postFetchResponse');
   await fetch(process.env.REACT_APP_API_URL, {
     method: 'POST',
     mode: 'cors',

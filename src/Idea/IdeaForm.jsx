@@ -3,7 +3,6 @@ import { React, useState } from 'react';
 import { postFetchResponse } from './IdeaFetch';
 
 function IdeaForm(props) {
-  const [apiURL, setApiURL] = useState(process.env.REACT_APP_API_URL);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [problem, setProblem] = useState('');
@@ -13,17 +12,16 @@ function IdeaForm(props) {
 
   function handleIdeaChange(event) {
     const { target: { value } } = event;
-    setName(event);
-    setDescription(event);
-    setProblem(event);
-    setSphere(event);
-    setGeoFocus(event);
-    setInvestorRequirements(event);
+    setName(value);
+    setDescription(value);
+    setProblem(value);
+    setSphere(value);
+    setGeoFocus(value);
+    setInvestorRequirements(value);
   }
 
   async function formSubmit(formData) {
     const data = new FormData(formData);
-    console.log('Inside formSubmit');
     postFetchResponse(data);
   }
 

@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import Login from './auth/Login';
 import Registration from './auth/Registration';
 
 export default function Home(props) {
@@ -17,6 +18,7 @@ export default function Home(props) {
         {props.loggedInStatus}
       </h1>
       <Registration handleSuccessfulAuth={handleSuccessfulAuth} />
+      <Login handleSuccessfulAuth={handleSuccessfulAuth} />
     </div>
   );
 }

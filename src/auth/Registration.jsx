@@ -17,14 +17,14 @@ export default class Registration extends Component {
   }
 
   handleSubmit(event) {
-    axios.post(`${process.env.REACT_APP_API_URL}users/registrations`, {
-      customer: {
+    axios.post(`${process.env.REACT_APP_API_URL}users`, {
+      user: {
         email: this.state.email,
         password: this.state.password,
         password_confirmation: this.state.password_confirmation,
       },
-    }, { withCredentials: true }).then((response) => {
-      if (response.data.status === 'created') {
+    }, { withCredentials: false }).then((response) => {
+      if (response.data.message === 'Signed up sucessfully') {
         this.props.handleSuccessfulAuth(response.data);
       }
     }).catch((error) => {

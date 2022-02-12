@@ -20,8 +20,6 @@
    "react/prefer-stateless-function": "off",
    "react/jsx-props-no-spreading": "off",
    "react/jsx-curly-brace-presence": "off",
-   "no-bitwise": "off",
-   "max-len": "off",
    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }

@@ -16,13 +16,13 @@ export default class Login extends Component {
   }
 
   handleSubmit(event) {
-    axios.post(`${process.env.REACT_APP_API_URL}users/sign_in`, {
-      user: {
+    axios.post(`${process.env.REACT_APP_API_URL}users/sessions`, {
+      customer: {
         email: this.state.email,
         password: this.state.password,
       },
-    }, { withCredentials: false }).then((response) => {
-      if (response.data.message === 'You are logged in.') {
+    }, { withCredentials: true }).then((response) => {
+      if (response.data.status === 'created') {
         this.props.handleSuccessfulAuth(response.data);
       }
     }).catch((error) => {

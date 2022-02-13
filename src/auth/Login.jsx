@@ -1,29 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import axios from 'axios';
+import { TextField, Button } from '@mui/material';
 
-export default class Login extends Component {
-  constructor(props) {
-    super(props);
+export default function Login(props) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginErrors, setErrors] = useState('');
 
-    this.state = {
-      email: '',
-      password: '',
-      loginErrors: '',
-    };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleSubmit(event) {
+  function handleSubmit(event) {
     axios.post(`${process.env.REACT_APP_API_URL}users/sessions`, {
       customer: {
-        email: this.state.email,
-        password: this.state.password,
+        email: email,
+        password: password,
       },
     }, { withCredentials: true }).then((response) => {
       if (response.data.status === 'created') {
-        this.props.handleSuccessfulAuth(response.data);
+        props.handleSuccessfulAuth(response.data);
       }
     }).catch((error) => {
       console.log('login error', error);
@@ -31,21 +23,19 @@ export default class Login extends Component {
     event.preventDefault();
   }
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+  function handleChange(event) {
+    const { target: { value } } = event;
+    setEmail(value);
+    setPassword(value);
   }
 
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required />
-          <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
-          <button type="submit">Login</button>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <form onSubmit={handleSubmit} id="customer_form" autoComplete="off">
+        <TextField id="email_input" label="Email" variant="outlined" type="text" name="email" onChange={handleChange} />
+        <TextField id="password_input" label="Password" variant="outlined" type="password" name="=password" onChange={handleChange} />
+        <Button variant="contained" color="primary" type="submit"> Login </Button>
+      </form>
+    </div>
+  );
 }

@@ -4,35 +4,18 @@ import { Typography } from '@mui/material';
 import axios from 'axios';
 import IdeaList from './Idea/IdeaList';
 import Registration from './auth/Registration';
+import { sessionRequest } from './apiRequests/CustomerRequests';
 import Home from './Home';
 import Dashboard from './Dashboard';
 
 function App() {
-  const [loggedInStatus, setStatus] = useState('NOT_LOGGED_IN');
-  const [user, setUser] = useState({});
+  const [state, setState] = useState({
+    isLoggedIn: false,
+    user: {},
+  });
 
   function checkLoginStatus() {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}users/logged_in`, { withCredentials: true })
-      .then((response) => {
-        console.log(response);
-        if (
-          response.data.logged_in
-          && loggedInStatus === 'NOT_LOGGED_IN'
-        ) {
-          setStatus('LOGGED_IN');
-          setUser(response.data.user);
-        } else if (
-          !response.data.logged_in
-          & (loggedInStatus === 'LOGGED_IN')
-        ) {
-          setStatus('NOT_LOGGED_IN');
-          setUser({});
-        }
-      })
-      .catch((error) => {
-        console.log('check login error', error);
-      });
+    sessionRequest(state, setState);
   }
 
   useEffect(() => {
@@ -40,13 +23,17 @@ function App() {
   });
 
   function handleLogin(data) {
-    setStatus('LOGGED_IN');
-    setUser(data.user);
+    setState({
+      isLoggedIn: true,
+      user: data.user,
+    });
   }
 
   function handleLogout() {
-    setStatus('NOT_LOGGED_IN');
-    setUser({});
+    setState({
+      isLoggedIn: false,
+      user: {},
+    });
   }
 
   return (
@@ -61,12 +48,12 @@ function App() {
           <Route
             exact
             path={'/home'}
-            element={<Home handleLogin={handleLogin} handleLogout={handleLogout} loggedInStatus={loggedInStatus} />}
+            element={<Home handleLogin={handleLogin} handleLogout={handleLogout} isLoggedIn={state.isLoggedIn} />}
           />
           <Route
             exact
             path={'/dashboard'}
-            element={<Dashboard loggedInStatus={loggedInStatus} />}
+            element={<Dashboard isLoggedIn={state.isLoggedIn} />}
           />
         </Routes>
       </BrowserRouter>

@@ -6,7 +6,7 @@ export default function Dashboard(props) {
       <h1>Dashboard</h1>
       <h1>
         Status:
-        {props.loggedInStatus}
+        {props.isLoggedIn}
       </h1>
     </div>
   );

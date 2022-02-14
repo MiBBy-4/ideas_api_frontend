@@ -21,7 +21,7 @@ export default function Home(props) {
       <h1>Home</h1>
       <h1>
         Status:
-        {props.loggedInStatus}
+        {(props.isLoggedIn)}
       </h1>
       <button type="submit" onClick={() => handleLogoutClick()}>Logout</button>
       <Registration handleSuccessfulAuth={handleSuccessfulAuth} />

@@ -38,3 +38,31 @@ export function logoutRequest(handleLogout) {
     console.log('logout error', error);
   });
 }
+
+export function sessionRequest(state, setState) {
+  axios
+    .get(`${process.env.REACT_APP_API_URL}users/logged_in`, { withCredentials: true })
+    .then((response) => {
+      console.log(response);
+      if (
+        response.data.logged_in
+        && !state.isLoggedIn
+      ) {
+        setState({
+          isLoggedIn: true,
+          user: response.data.user,
+        });
+      } else if (
+        !response.data.logged_in
+        & state.isLoggedIn
+      ) {
+        setState({
+          isLoggedIn: false,
+          user: {},
+        });
+      }
+    })
+    .catch((error) => {
+      console.log('check login error', error);
+    });
+}

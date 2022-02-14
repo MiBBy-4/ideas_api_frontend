@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import IdeaItem from './IdeaItem';
 import IdeaForm from './IdeaForm';
-import { getIdeas } from './IdeaFetch';
+import { getIdeas } from '../apiRequests/IdeasRequests';
 
 function IdeaList() {
   const [items, setItems] = useState([]);

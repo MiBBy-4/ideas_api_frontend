@@ -30,3 +30,11 @@ export function registrationRequest(email, password, password_confirmation, hand
     console.log('registration error', error);
   });
 }
+
+export function logoutRequest(handleLogout) {
+  axios.delete(`${process.env.REACT_APP_API_URL}users/logout`, { withCredentials: true }).then((request) => {
+    handleLogout();
+  }).catch((error) => {
+    console.log('logout error', error);
+  });
+}

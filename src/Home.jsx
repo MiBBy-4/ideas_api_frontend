@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Login from './auth/Login';
 import Registration from './auth/Registration';
+import { logoutRequest } from './apiRequests/CustomerRequests';
 
 export default function Home(props) {
   let navigate = useNavigate();
@@ -12,11 +13,7 @@ export default function Home(props) {
   }
 
   function handleLogoutClick() {
-    axios.delete(`${process.env.REACT_APP_API_URL}users/logout`, { withCredentials: true }).then((request) => {
-      props.handleLogout();
-    }).catch((error) => {
-      console.log('logout error', error);
-    });
+    logoutRequest(props.handleLogout);
   }
 
   return (

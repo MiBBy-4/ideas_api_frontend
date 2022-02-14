@@ -1,35 +1,27 @@
 import React, { Component, useState } from 'react';
 import axios from 'axios';
 import { TextField, Button } from '@mui/material';
+import { registrationRequest } from '../apiRequests/CustomerRequests';
 
 export default function Registration(props) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [password_confirmation, setPasswordConfirmation] = useState('');
-  const [registrationErrors, setErrors] = useState('');
+  const [state, setState] = useState({
+    email: '',
+    password: '',
+    password_confirmation: '',
+    registrationErrors: '',
+  });
 
   function handleSubmit(event) {
-    axios.post(`${process.env.REACT_APP_API_URL}users/registrations`, {
-      customer: {
-        email: email,
-        password: password,
-        password_confirmation: password_confirmation,
-      },
-    }, { withCredentials: true }).then((response) => {
-      if (response.data.status === 'created') {
-        props.handleSuccessfulAuth(response.data);
-      }
-    }).catch((error) => {
-      console.log('registration error', error);
-    });
+    registrationRequest(state.email, state.password, state.password_confirmation, props.handleSuccessfulAuth);
     event.preventDefault();
   }
 
   function handleChange(event) {
     const { target: { value } } = event;
-    setEmail(value);
-    setPassword(value);
-    setPasswordConfirmation(value);
+    setState({
+      ...state,
+      [event.target.name]: event.target.value,
+    });
   }
 
   return (

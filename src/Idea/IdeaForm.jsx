@@ -2,7 +2,7 @@ import { TextField, Button } from '@mui/material';
 import { React, useState } from 'react';
 import { postIdeas } from '../apiRequests/IdeasRequests';
 
-function IdeaForm(props) {
+function IdeaForm() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [problem, setProblem] = useState('');

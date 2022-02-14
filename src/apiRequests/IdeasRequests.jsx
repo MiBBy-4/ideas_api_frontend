@@ -1,8 +1,6 @@
-import React from 'react';
 import axios from 'axios';
 
-export async function postIdeas(data) {
-  console.log(data.get('name'));
+export function postIdeas(data) {
   axios.post(`${process.env.REACT_APP_API_URL}api/v1/ideas`, {
     idea: {
       name: data.get('name'),

@@ -43,7 +43,6 @@ export function sessionRequest(state, setState) {
   axios
     .get(`${process.env.REACT_APP_API_URL}users/logged_in`, { withCredentials: true })
     .then((response) => {
-      console.log(response);
       if (
         response.data.logged_in
         && !state.isLoggedIn

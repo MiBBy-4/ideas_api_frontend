@@ -41,7 +41,7 @@ function App() {
       <header className="App-header">
         <Typography variant="h1">TEST</Typography>
         <hr />
-        {/* <IdeaList /> */}
+        <IdeaList />
       </header>
       <BrowserRouter>
         <Routes>

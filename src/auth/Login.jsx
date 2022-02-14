@@ -11,16 +11,16 @@ export default function Login(props) {
   });
 
   function handleSubmit(event) {
-    console.log(state.email);
     loginRequest(state.email, state.password, props.handleSuccessfulAuth);
     event.preventDefault();
   }
 
   function handleChange(event) {
     const { target: { value } } = event;
+    const { target: { name } } = event;
     setState({
       ...state,
-      [event.target.name]: event.target.value,
+      [name]: value,
     });
   }
 

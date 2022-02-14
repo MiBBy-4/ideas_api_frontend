@@ -3,21 +3,22 @@ import { React, useState } from 'react';
 import { postIdeas } from '../apiRequests/IdeasRequests';
 
 function IdeaForm() {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [problem, setProblem] = useState('');
-  const [sphere, setSphere] = useState('');
-  const [geo_focus, setGeoFocus] = useState('');
-  const [investor_requirements, setInvestorRequirements] = useState('');
+  const [state, setState] = useState({
+    name: '',
+    description: '',
+    problem: '',
+    sphere: '',
+    geo_focus: '',
+    investor_requirements: '',
+  });
 
   function handleIdeaChange(event) {
     const { target: { value } } = event;
-    setName(value);
-    setDescription(value);
-    setProblem(value);
-    setSphere(value);
-    setGeoFocus(value);
-    setInvestorRequirements(value);
+    const { target: { name } } = event;
+    setState({
+      ...state,
+      [name]: value,
+    });
   }
 
   async function formSubmit(formData) {

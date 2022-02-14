@@ -18,9 +18,10 @@ export default function Registration(props) {
 
   function handleChange(event) {
     const { target: { value } } = event;
+    const { target: { name } } = event;
     setState({
       ...state,
-      [event.target.name]: event.target.value,
+      [name]: value,
     });
   }
 

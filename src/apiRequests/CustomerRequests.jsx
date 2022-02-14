@@ -48,9 +48,11 @@ export function sessionRequest(state, setState) {
         response.data.logged_in
         && !state.isLoggedIn
       ) {
+        const { data: { user } } = response;
+
         setState({
           isLoggedIn: true,
-          user: response.data.user,
+          user: user,
         });
       } else if (
         !response.data.logged_in

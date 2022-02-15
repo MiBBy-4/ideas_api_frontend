@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export function postIdeas(data) {
-  axios.post(`${process.env.REACT_APP_API_URL}api/v1/ideas`, {
+  return axios.post(`${process.env.REACT_APP_API_URL}api/v1/ideas`, {
     idea: {
       name: data.get('name'),
       description: data.get('description'),
@@ -10,15 +10,9 @@ export function postIdeas(data) {
       geo_focus: data.get('geo_focus'),
       investor_requirements: data.get('investor_requirements'),
     },
-  }, { withCredentials: true }).then((response) => console.log(response)).catch((error) => {
-    console.log('post idea error', error);
-  });
+  }, { withCredentials: true });
 }
 
-export function getIdeas(setItems) {
-  axios.get(`${process.env.REACT_APP_API_URL}api/v1/ideas`, { withCredentials: true }).then((response) => {
-    setItems(response.data.reverse());
-  }).catch((error) => {
-    console.log(error);
-  });
+export function getIdeas() {
+  return axios.get(`${process.env.REACT_APP_API_URL}api/v1/ideas`, { withCredentials: true });
 }

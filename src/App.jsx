@@ -11,11 +11,24 @@ import Dashboard from './Dashboard';
 function App() {
   const [state, setState] = useState({
     isLoggedIn: false,
-    user: {},
+    customer: {},
   });
 
-  function checkLoginStatus() {
-    sessionRequest(state, setState);
+  async function checkLoginStatus() {
+    const response = await sessionRequest();
+    console.log(response);
+    if (response.data.logged_in && !state.isLoggedIn) {
+      const { data: { customer } } = response;
+      setState({
+        isLoggedIn: true,
+        customer: customer,
+      });
+    } else if (!response.data.logged_in & state.isLoggedIn) {
+      setState({
+        isLoggedIn: false,
+        customer: {},
+      });
+    }
   }
 
   useEffect(() => {
@@ -23,25 +36,27 @@ function App() {
   });
 
   function handleLogin(data) {
+    console.log(data);
     setState({
       isLoggedIn: true,
-      user: data.user,
+      customer: data.customer,
     });
   }
 
   function handleLogout() {
     setState({
       isLoggedIn: false,
-      user: {},
+      customer: {},
     });
   }
+  console.log(state.isLoggedIn);
 
   return (
     <div className="App">
       <header className="App-header">
         <Typography variant="h1">TEST</Typography>
         <hr />
-        <IdeaList />
+        {/* <IdeaList /> */}
       </header>
       <BrowserRouter>
         <Routes>

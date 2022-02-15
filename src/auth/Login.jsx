@@ -1,5 +1,4 @@
 import React, { Component, useState } from 'react';
-import axios from 'axios';
 import { TextField, Button } from '@mui/material';
 import { loginRequest } from '../apiRequests/CustomerRequests';
 
@@ -10,9 +9,11 @@ export default function Login(props) {
     loginErrors: '',
   });
 
-  function handleSubmit(event) {
-    loginRequest(state.email, state.password, props.handleSuccessfulAuth);
-    event.preventDefault();
+  async function formSubmit(event) {
+    const response = await loginRequest(state.email, state.password);
+    if (response.data.status === 'created') {
+      props.handleSuccessfulAuth(response.data);
+    }
   }
 
   function handleChange(event) {
@@ -23,6 +24,11 @@ export default function Login(props) {
       [name]: value,
     });
   }
+
+  const handleSubmit = (event) => {
+    formSubmit();
+    event.preventDefault();
+  };
 
   return (
     <div>

@@ -23,7 +23,7 @@ function IdeaForm() {
 
   async function formSubmit(formData) {
     const data = new FormData(formData);
-    postIdeas(data);
+    await postIdeas(data);
   }
 
   const handleSubmit = (event) => {

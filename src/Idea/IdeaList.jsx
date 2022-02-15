@@ -6,8 +6,9 @@ import { getIdeas } from '../apiRequests/IdeasRequests';
 function IdeaList() {
   const [items, setItems] = useState([]);
 
-  useEffect(() => {
-    getIdeas(setItems);
+  useEffect(async () => {
+    const response = await getIdeas();
+    setItems(response.data.reverse());
   });
 
   function updateIdeaList(item) {

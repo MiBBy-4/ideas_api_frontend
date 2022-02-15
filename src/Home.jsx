@@ -12,8 +12,11 @@ export default function Home(props) {
     navigate('/dashboard');
   }
 
-  function handleLogoutClick() {
-    logoutRequest(props.handleLogout);
+  async function handleLogoutClick() {
+    const response = await logoutRequest();
+    if (response.data.logged_out) {
+      props.handleLogout();
+    }
   }
 
   return (

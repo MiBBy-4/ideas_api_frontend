@@ -1,5 +1,4 @@
 import React, { Component, useState } from 'react';
-import axios from 'axios';
 import { TextField, Button } from '@mui/material';
 import { registrationRequest } from '../apiRequests/CustomerRequests';
 
@@ -11,9 +10,11 @@ export default function Registration(props) {
     registrationErrors: '',
   });
 
-  function handleSubmit(event) {
-    registrationRequest(state.email, state.password, state.password_confirmation, props.handleSuccessfulAuth);
-    event.preventDefault();
+  async function formSubmit(event) {
+    const response = await registrationRequest(state.email, state.password, state.password_confirmation);
+    if (response.data.status === 'created') {
+      props.handleSuccessfulAuth(response.data);
+    }
   }
 
   function handleChange(event) {
@@ -24,6 +25,11 @@ export default function Registration(props) {
       [name]: value,
     });
   }
+
+  const handleSubmit = (event) => {
+    formSubmit();
+    event.preventDefault();
+  };
 
   return (
     <div>

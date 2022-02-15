@@ -23,7 +23,7 @@ function App() {
         isLoggedIn: true,
         customer: customer,
       });
-    } else if (!response.data.logged_in & state.isLoggedIn) {
+    } else if (!response.data.logged_in && state.isLoggedIn) {
       setState({
         isLoggedIn: false,
         customer: {},
@@ -49,7 +49,6 @@ function App() {
       customer: {},
     });
   }
-  console.log(state.isLoggedIn);
 
   return (
     <div className="App">

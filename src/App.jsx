@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter, Routes, Route, Link,
+} from 'react-router-dom';
 import { Typography } from '@mui/material';
 import axios from 'axios';
 import IdeaList from './Idea/IdeaList';
@@ -52,22 +54,24 @@ function App() {
       <header className="App-header">
         <Typography variant="h1">TEST</Typography>
         <hr />
-        {/* <IdeaList /> */}
+        <BrowserRouter>
+          <Link to="/ideas">List of Ideas</Link>
+          <Routes>
+            <Route
+              path={'/ideas'}
+              element={<IdeaList />}
+            />
+            <Route
+              path={'/'}
+              element={<Home handleLogin={handleLogin} handleLogout={handleLogout} isLoggedIn={state.isLoggedIn} />}
+            />
+            <Route
+              path={'/dashboard'}
+              element={<Dashboard isLoggedIn={state.isLoggedIn} />}
+            />
+          </Routes>
+        </BrowserRouter>
       </header>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            exact
-            path={'/home'}
-            element={<Home handleLogin={handleLogin} handleLogout={handleLogout} isLoggedIn={state.isLoggedIn} />}
-          />
-          <Route
-            exact
-            path={'/dashboard'}
-            element={<Dashboard isLoggedIn={state.isLoggedIn} />}
-          />
-        </Routes>
-      </BrowserRouter>
     </div>
   );
 }

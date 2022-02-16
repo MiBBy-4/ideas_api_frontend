@@ -23,7 +23,6 @@
    "no-bitwise": "off",
    "max-len": "off",
    "object-shorthand": "off",
-   "consistent-return": "off",
    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }

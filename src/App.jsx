@@ -33,7 +33,6 @@ function App() {
   useEffect(() => {
     checkLoginStatus();
   });
-  console.log(state.isLoggedIn);
   function handleLogin(data) {
     setState({
       isLoggedIn: true,

@@ -16,14 +16,13 @@ function App() {
 
   async function checkLoginStatus() {
     const response = await sessionRequest();
-    console.log(response);
-    if (response.data.logged_in && !state.isLoggedIn) {
-      const { data: { customer } } = response;
+    const { data: { customer, logged_in } } = response;
+    if (logged_in && !state.isLoggedIn) {
       setState({
         isLoggedIn: true,
         customer: customer,
       });
-    } else if (!response.data.logged_in && state.isLoggedIn) {
+    } else if (!logged_in && state.isLoggedIn) {
       setState({
         isLoggedIn: false,
         customer: {},
@@ -34,9 +33,8 @@ function App() {
   useEffect(() => {
     checkLoginStatus();
   });
-
+  console.log(state.isLoggedIn);
   function handleLogin(data) {
-    console.log(data);
     setState({
       isLoggedIn: true,
       customer: data.customer,

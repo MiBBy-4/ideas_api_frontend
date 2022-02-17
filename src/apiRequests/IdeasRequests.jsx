@@ -16,3 +16,7 @@ export function postIdeas(data) {
 export function getIdeas() {
   return axios.get(`${process.env.REACT_APP_API_URL}api/v1/ideas`, { withCredentials: true });
 }
+
+export function getIdea(ideaId) {
+  return axios.get(`${process.env.REACT_APP_API_URL}api/v1/ideas/${ideaId}`, { withCredentials: true });
+}

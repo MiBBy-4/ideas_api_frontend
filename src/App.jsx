@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import {
-  BrowserRouter, Routes, Route, Link,
+  Routes,
+  Route,
 } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import IdeaList from './Idea/IdeaList';

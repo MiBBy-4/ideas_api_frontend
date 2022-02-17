@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Link, Route, Routes,
-} from 'react-router-dom';
-import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export default function IdeaItem(props) {
   const ideaURL = `/ideas/${props.item.id}`;

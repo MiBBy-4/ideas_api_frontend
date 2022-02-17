@@ -3,11 +3,10 @@ import {
   BrowserRouter, Routes, Route, Link,
 } from 'react-router-dom';
 import { Typography } from '@mui/material';
-import axios from 'axios';
 import IdeaList from './Idea/IdeaList';
-import Registration from './auth/Registration';
 import { sessionRequest } from './apiRequests/CustomerRequests';
 import Home from './Home';
+import IdeaShow from './Idea/IdeaShow';
 import Dashboard from './Dashboard';
 
 function App() {
@@ -54,23 +53,24 @@ function App() {
       <header className="App-header">
         <Typography variant="h1">TEST</Typography>
         <hr />
-        <BrowserRouter>
-          <Link to="/ideas">List of Ideas</Link>
-          <Routes>
-            <Route
-              path={'/ideas'}
-              element={<IdeaList />}
-            />
-            <Route
-              path={'/'}
-              element={<Home handleLogin={handleLogin} handleLogout={handleLogout} isLoggedIn={state.isLoggedIn} />}
-            />
-            <Route
-              path={'/dashboard'}
-              element={<Dashboard isLoggedIn={state.isLoggedIn} />}
-            />
-          </Routes>
-        </BrowserRouter>
+        <Routes>
+          <Route
+            path={'/ideas/*'}
+            element={<IdeaList />}
+          />
+          <Route
+            path={'/ideas/:ideaId'}
+            element={<IdeaShow />}
+          />
+          <Route
+            path={'/'}
+            element={<Home handleLogin={handleLogin} handleLogout={handleLogout} isLoggedIn={state.isLoggedIn} />}
+          />
+          <Route
+            path={'/dashboard'}
+            element={<Dashboard isLoggedIn={state.isLoggedIn} />}
+          />
+        </Routes>
       </header>
     </div>
   );

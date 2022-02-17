@@ -1,6 +1,14 @@
+import { useParams } from 'react-router';
+
 export default function IdeaShow(props) {
-  console.warn(props);
+  const { ideaId } = useParams();
+  console.log(ideaId);
   return (
-    <div><h1>Idea Component</h1></div>
+    <div>
+      <h1>
+        Idea Component
+        { ideaId }
+      </h1>
+    </div>
   );
 }

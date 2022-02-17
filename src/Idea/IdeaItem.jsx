@@ -1,22 +1,14 @@
 import React from 'react';
 import {
-  BrowserRouter, Link, Route, Routes,
+  Link, Route, Routes,
 } from 'react-router-dom';
-import IdeaShow from './IdeaShow';
+import { useNavigate } from 'react-router';
 
 export default function IdeaItem(props) {
-  const ideaURL = `/idea/${props.item.id}`;
+  const ideaURL = `/ideas/${props.item.id}`;
   return (
     <div>
-      <BrowserRouter>
-        <li><Link to={ideaURL}>{props.item.name}</Link></li>
-        <Routes>
-          <Route
-            path={'/idea/:id'}
-            element={<IdeaShow item={props.item} />}
-          />
-        </Routes>
-      </BrowserRouter>
+      <li><Link to={ideaURL}>{props.item.name}</Link></li>
     </div>
   );
 }

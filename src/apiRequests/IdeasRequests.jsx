@@ -21,3 +21,9 @@ export function getIdeas() {
 export function getIdea(ideaId) {
   return axios.get(`${process.env.REACT_APP_API_URL}api/v1/ideas/${ideaId}`, { withCredentials: true });
 }
+
+export function changeNumberOfViews(idea) {
+  return axios.patch(`${process.env.REACT_APP_API_URL}api/v1/ideas/${idea.id}`, {
+    views: idea.views + 1,
+  }, { withCredentials: true });
+}

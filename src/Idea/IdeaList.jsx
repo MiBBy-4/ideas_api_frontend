@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import IdeaItem from './IdeaItem';
 import IdeaForm from './IdeaForm';
 import { getIdeas } from '../apiRequests/IdeasRequests';
@@ -21,7 +22,7 @@ function IdeaList() {
 
   return (
     <div>
-      <IdeaForm updateIdeaList={updateIdeaList} />
+      <Link to="/ideas/new">Create new Idea</Link>
       <ul>
         {items.map((item) => (
           <IdeaItem key={item.id} item={item} />

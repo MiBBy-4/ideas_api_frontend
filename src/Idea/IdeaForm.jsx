@@ -2,7 +2,8 @@ import { TextField, Button } from '@mui/material';
 import { React, useState } from 'react';
 import { postIdeas } from '../apiRequests/IdeasRequests';
 
-function IdeaForm() {
+function IdeaForm(props) {
+  const { userId } = props;
   const [state, setState] = useState({
     name: '',
     description: '',
@@ -23,7 +24,7 @@ function IdeaForm() {
 
   async function formSubmit(formData) {
     const data = new FormData(formData);
-    await postIdeas(data);
+    await postIdeas(data, userId);
   }
 
   const handleSubmit = (event) => {

@@ -2,7 +2,7 @@ import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { getIdea } from '../apiRequests/IdeasRequests';
 
-export default function IdeaShow(props) {
+export default function IdeaShow() {
   const { ideaId } = useParams();
   const [idea, setIdea] = useState();
 
@@ -11,16 +11,19 @@ export default function IdeaShow(props) {
     setIdea(response.data);
   });
 
+  console.log(idea.customer);
+
   return (
     <div>
       <h1>
-        { idea.name }
+        {/* {idea.name} */}
+        Test
       </h1>
-      {idea.description}
+      {/* {item.description}
       <br />
-      {idea.problem}
+      {item.problem}
       <br />
-      {idea.sphere}
+      {item.sphere} */}
     </div>
   );
 }

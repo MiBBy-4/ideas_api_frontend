@@ -8,6 +8,7 @@ import IdeaList from './Idea/IdeaList';
 import { sessionRequest } from './apiRequests/CustomerRequests';
 import Home from './Home';
 import IdeaShow from './Idea/IdeaShow';
+import IdeaNew from './Idea/IdeaNew';
 import Dashboard from './Dashboard';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         customer: {},
       });
     }
+    console.log(logged_in);
   }
 
   useEffect(() => {
@@ -62,6 +64,10 @@ function App() {
           <Route
             path={'/ideas/:ideaId'}
             element={<IdeaShow />}
+          />
+          <Route
+            path={'/ideas/new'}
+            element={<IdeaNew customer={state.customer} />}
           />
           <Route
             path={'/'}

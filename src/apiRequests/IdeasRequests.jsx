@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export function postIdeas(data) {
+export function postIdeas(data, userId) {
   return axios.post(`${process.env.REACT_APP_API_URL}api/v1/ideas`, {
     idea: {
       name: data.get('name'),
@@ -9,6 +9,7 @@ export function postIdeas(data) {
       sphere: data.get('sphere'),
       geo_focus: data.get('geo_focus'),
       investor_requirements: data.get('investor_requirements'),
+      customer_id: userId,
     },
   }, { withCredentials: true });
 }

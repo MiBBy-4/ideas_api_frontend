@@ -31,7 +31,6 @@ function App() {
         customer: {},
       });
     }
-    console.log(logged_in);
   }
 
   useEffect(() => {

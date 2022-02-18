@@ -1,29 +1,23 @@
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getIdea } from '../apiRequests/IdeasRequests';
 
 export default function IdeaShow() {
   const { ideaId } = useParams();
-  const [idea, setIdea] = useState();
+  const [idea, setIdea] = useState({});
 
   useEffect(async () => {
     const response = await getIdea(ideaId);
     setIdea(response.data);
   });
 
-  console.log(idea.customer);
-
   return (
     <div>
       <h1>
-        {/* {idea.name} */}
-        Test
+        {idea.name}
       </h1>
-      {/* {item.description}
-      <br />
-      {item.problem}
-      <br />
-      {item.sphere} */}
+      <Link to="/ideas">Go back!</Link>
     </div>
   );
 }

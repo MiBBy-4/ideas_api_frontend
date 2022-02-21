@@ -1,0 +1,13 @@
+0000000000000000000000000000000000000000 de8d3b6606bf0c9a9fecf203e584a5d5a32712c7 MiBBy-4 <maksim.762373maks@bk.ru> 1643656850 +0300	commit (initial): Initialize project using Create React App
+de8d3b6606bf0c9a9fecf203e584a5d5a32712c7 b584fa3bc920313ef65e14be002e6572ead08f7d MiBBy-4 <maksim.762373maks@bk.ru> 1643659283 +0300	commit: feat: add ESLint linter for JS and JSX, rename all .js types to .jsx, add all dependencies for ESLin in package.json and add enviroments for ESLin, the same with StyleLint that used for CSS, add commands for npm to run them all in one. Delete css styles in index.css and App.css
+b584fa3bc920313ef65e14be002e6572ead08f7d de8d3b6606bf0c9a9fecf203e584a5d5a32712c7 MiBBy-4 <maksim.762373maks@bk.ru> 1643659773 +0300	reset: moving to HEAD~
+de8d3b6606bf0c9a9fecf203e584a5d5a32712c7 3efb033909315ba8b32966029963657b150c08ac MiBBy-4 <maksim.762373maks@bk.ru> 1643801622 +0300	merge add_linters_for_application: Fast-forward
+3efb033909315ba8b32966029963657b150c08ac eaeb92dc73d3a03ec41d3f56b0f4885d4c3180a7 MiBBy-4 <maksim.762373maks@bk.ru> 1644315750 +0300	pull origin master: Fast-forward
+eaeb92dc73d3a03ec41d3f56b0f4885d4c3180a7 113b789517e79972f4e28a80d5b3c483e2f990cc MiBBy-4 <maksim.762373maks@bk.ru> 1644495386 +0300	commit: feat: add registration functional
+113b789517e79972f4e28a80d5b3c483e2f990cc 1598965ac6bdcf51fbd54b0ffee6774a797a491f MiBBy-4 <maksim.762373maks@bk.ru> 1644524732 +0300	commit: feat: add sign in functional
+1598965ac6bdcf51fbd54b0ffee6774a797a491f 77d8b9a95e06653ee6d7dd6d449ba2a73a3d1e96 MiBBy-4 <maksim.762373maks@bk.ru> 1644702151 +0300	commit: feat: create registration, login, check if the user is logged, logout functionals
+77d8b9a95e06653ee6d7dd6d449ba2a73a3d1e96 e6116846ce738c90c22202acc62f3fce0c963d6e MiBBy-4 <maksim.762373maks@bk.ru> 1644998316 +0300	merge add_authentication_functions: Fast-forward
+e6116846ce738c90c22202acc62f3fce0c963d6e a0b910d5e5415dde79155167037a07edf56708f1 MiBBy-4 <maksim.762373maks@bk.ru> 1645026987 +0300	commit: feat: create Route to the idea showpage and some refactors
+a0b910d5e5415dde79155167037a07edf56708f1 12a42d767979161a3a4111c22a63a7c59097313c MiBBy-4 <maksim.762373maks@bk.ru> 1645027187 +0300	revert: Revert "feat: create Route to the idea showpage and some refactors"
+12a42d767979161a3a4111c22a63a7c59097313c a0b910d5e5415dde79155167037a07edf56708f1 MiBBy-4 <maksim.762373maks@bk.ru> 1645027479 +0300	reset: moving to HEAD^
+a0b910d5e5415dde79155167037a07edf56708f1 97becbbe55caa21a0ec07726ad301de2f3fc2e88 MiBBy-4 <maksim.762373maks@bk.ru> 1645436388 +0300	merge add_routes_and_ideas_showpage: Fast-forward

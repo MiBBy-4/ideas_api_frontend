@@ -1,0 +1,3 @@
+0000000000000000000000000000000000000000 675a87e09add7cd2fb81f7c20f0530d63cd32949 MiBBy-4 <maksim.762373maks@bk.ru> 1644242339 +0300	branch: Created from HEAD
+675a87e09add7cd2fb81f7c20f0530d63cd32949 4ba152be55c07fe1113a61b72c23efff02a163e6 MiBBy-4 <maksim.762373maks@bk.ru> 1644254464 +0300	commit: feat: create session manager with all logic to auth users, add axios
+4ba152be55c07fe1113a61b72c23efff02a163e6 1d23f9becac941aa814866366935ac6b863faafb MiBBy-4 <maksim.762373maks@bk.ru> 1644255431 +0300	rebase (finish): refs/heads/add_interactions_with_users onto 3efb033909315ba8b32966029963657b150c08ac

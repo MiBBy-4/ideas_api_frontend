@@ -9,12 +9,13 @@ export function loginRequest(email, password) {
   }, { withCredentials: true });
 }
 
-export function registrationRequest(email, password, password_confirmation) {
+export function registrationRequest(email, password, password_confirmation, role) {
   return axios.post(`${process.env.REACT_APP_API_URL}users/registrations`, {
     customer: {
       email: email,
       password: password,
       password_confirmation: password_confirmation,
+      role: role,
     },
   }, { withCredentials: true });
 }

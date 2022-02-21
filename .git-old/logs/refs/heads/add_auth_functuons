@@ -1,0 +1,2 @@
+0000000000000000000000000000000000000000 77d8b9a95e06653ee6d7dd6d449ba2a73a3d1e96 MiBBy-4 <maksim.762373maks@bk.ru> 1644702501 +0300	branch: Created from HEAD
+77d8b9a95e06653ee6d7dd6d449ba2a73a3d1e96 184315116614e98840c6b4f11277e56f7ccc7ba4 MiBBy-4 <maksim.762373maks@bk.ru> 1644702535 +0300	commit: feat: create registration, login, check if the user is logged, logout functionals

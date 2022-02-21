@@ -10,6 +10,8 @@ import Home from './Home';
 import IdeaShow from './Idea/IdeaShow';
 import IdeaNew from './Idea/IdeaNew';
 import Dashboard from './Dashboard';
+import LoginPage from './auth/LoginPage';
+import RegistrationPage from './auth/RegistrationPage';
 
 function App() {
   const [state, setState] = useState({
@@ -75,6 +77,14 @@ function App() {
           <Route
             path={'/dashboard'}
             element={<Dashboard isLoggedIn={state.isLoggedIn} />}
+          />
+          <Route
+            path={'/login'}
+            element={<LoginPage handleLogin={handleLogin} isLoggedIn={state.isLoggedIn} />}
+          />
+          <Route
+            path={'/registration'}
+            element={<RegistrationPage handleLogin={handleLogin} isLoggedIn={state.isLoggedIn} />}
           />
         </Routes>
       </header>

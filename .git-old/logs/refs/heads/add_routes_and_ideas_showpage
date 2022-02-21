@@ -1,8 +1,0 @@
-0000000000000000000000000000000000000000 a0b910d5e5415dde79155167037a07edf56708f1 MiBBy-4 <maksim.762373maks@bk.ru> 1645027634 +0300	branch: Created from HEAD
-a0b910d5e5415dde79155167037a07edf56708f1 1b36a89739f46bcac35c1c73fdb9389389b2fcc3 MiBBy-4 <maksim.762373maks@bk.ru> 1645120517 +0300	commit: feat: change routes and add routing for personal page of each Ideas
-1b36a89739f46bcac35c1c73fdb9389389b2fcc3 302199a082b5fee983edbcfb9e747c52a35c3bce MiBBy-4 <maksim.762373maks@bk.ru> 1645130531 +0300	commit: feat: add request for idea and show it in the Idea page
-302199a082b5fee983edbcfb9e747c52a35c3bce 44b9c767c2fe4d57384fb9f71e0c8fe549092de9 MiBBy-4 <maksim.762373maks@bk.ru> 1645130872 +0300	commit: refactor: delete useless imports
-44b9c767c2fe4d57384fb9f71e0c8fe549092de9 3c6f7102589910b4a561d2455c39c175be7564c6 MiBBy-4 <maksim.762373maks@bk.ru> 1645188443 +0300	commit: feat: add route for create a new idea, add parametes customer_id in idea post request
-3c6f7102589910b4a561d2455c39c175be7564c6 cc598bc71cbe8abc69efecd13b27f81bd3ee4704 MiBBy-4 <maksim.762373maks@bk.ru> 1645191709 +0300	commit: fix: change type of state of the idea in IdeaShow.jsx, also delete useless log
-cc598bc71cbe8abc69efecd13b27f81bd3ee4704 a7a0ea7925db69a5e8822f92ea4bc4a02b6d675c MiBBy-4 <maksim.762373maks@bk.ru> 1645196346 +0300	commit: feat: create patch request to update number of views, add it in OnClick event of each ideas
-a7a0ea7925db69a5e8822f92ea4bc4a02b6d675c 97becbbe55caa21a0ec07726ad301de2f3fc2e88 MiBBy-4 <maksim.762373maks@bk.ru> 1645434993 +0300	commit: refactor: use object destructing in IdeaItem.jsx

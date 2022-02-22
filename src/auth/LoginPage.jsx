@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router';
 import Login from './Login';
 
 export default function LoginPage(props) {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   function handleSuccessfulAuth(data) {
     props.handleLogin(data);

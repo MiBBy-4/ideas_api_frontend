@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router';
 import Registration from './Registration';
 
 export default function RegistrationPage(props) {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   function handleSuccessfulAuth(data) {
     props.handleLogin(data);

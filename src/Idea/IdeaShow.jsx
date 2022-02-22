@@ -14,7 +14,6 @@ export default function IdeaShow() {
 
   async function handleClick(reaction) {
     const response = await setReaction(ideaId, reaction);
-    console.log(response);
   }
 
   return (

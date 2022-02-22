@@ -28,10 +28,11 @@ export function changeNumberOfViews(idea) {
   }, { withCredentials: true });
 }
 
-export function setReaction(ideaId) {
-  return axios.post(`${process.env.REACT_APP_API_URL}/reactions`, {
+export function setReaction(ideaId, reaction) {
+  return axios.post(`${process.env.REACT_APP_API_URL}reactions`, {
     reaction: {
       idea_id: ideaId,
+      reaction: reaction,
     },
   }, { withCredentials: true });
 }

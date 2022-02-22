@@ -12,8 +12,8 @@ export default function IdeaShow() {
     setIdea(response.data);
   });
 
-  async function handleClick() {
-    const response = await setReaction(ideaId);
+  async function handleClick(reaction) {
+    const response = await setReaction(ideaId, reaction);
     console.log(response);
   }
 
@@ -22,7 +22,8 @@ export default function IdeaShow() {
       <h1>
         {idea.name}
       </h1>
-      <button type="submit" onClick={() => handleClick()}>Like</button>
+      <button type="submit" onClick={() => handleClick(true)}>Like</button>
+      <button type="submit" onClick={() => handleClick(false)}>Dislike</button>
       <Link to="/ideas">Go back!</Link>
     </div>
   );

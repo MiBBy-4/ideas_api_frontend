@@ -12,6 +12,8 @@ import IdeaNew from './Idea/IdeaNew';
 import Dashboard from './Dashboard';
 import LoginPage from './auth/LoginPage';
 import RegistrationPage from './auth/RegistrationPage';
+import ErrorPage from './auth/ErrorPage';
+import IdeaUpdate from './Idea/IdeaUpdate';
 
 function App() {
   const [state, setState] = useState({
@@ -57,36 +59,84 @@ function App() {
       <header className="App-header">
         <Typography variant="h1">TEST</Typography>
         <hr />
-        <Routes>
-          <Route
-            path={'/ideas/*'}
-            element={<IdeaList />}
-          />
-          <Route
-            path={'/ideas/:ideaId'}
-            element={<IdeaShow />}
-          />
-          <Route
-            path={'/ideas/new'}
-            element={<IdeaNew customer={state.customer} />}
-          />
-          <Route
-            path={'/'}
-            element={<Home handleLogin={handleLogin} handleLogout={handleLogout} isLoggedIn={state.isLoggedIn} />}
-          />
-          <Route
-            path={'/dashboard'}
-            element={<Dashboard isLoggedIn={state.isLoggedIn} />}
-          />
-          <Route
-            path={'/login'}
-            element={<LoginPage handleLogin={handleLogin} isLoggedIn={state.isLoggedIn} />}
-          />
-          <Route
-            path={'/registration'}
-            element={<RegistrationPage handleLogin={handleLogin} isLoggedIn={state.isLoggedIn} />}
-          />
-        </Routes>
+        { state.isLoggedIn && state.customer.role === 3 ? (
+          <Routes>
+            <Route
+              path={'/ideas/:ideaId/update'}
+              element={<IdeaUpdate />}
+            />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route
+              path={'/ideas/:ideaId/update'}
+              element={<ErrorPage />}
+            />
+          </Routes>
+        )}
+        { state.isLoggedIn ? (
+          <Routes>
+            <Route
+              path={'/ideas/*'}
+              element={<IdeaList isLoggedIn={state.isLoggedIn} />}
+            />
+            <Route
+              path={'/ideas/:ideaId'}
+              element={<IdeaShow customer={state.customer} isLoggedIn={state.isLoggedIn} />}
+            />
+            <Route
+              path={'/ideas/new'}
+              element={<IdeaNew customer={state.customer} isLoggedIn={state.isLoggedIn} />}
+            />
+            <Route
+              path={'/'}
+              element={<Home handleLogin={handleLogin} handleLogout={handleLogout} isLoggedIn={state.isLoggedIn} />}
+            />
+            <Route
+              path={'/dashboard'}
+              element={<Dashboard isLoggedIn={state.isLoggedIn} />}
+            />
+            <Route
+              path={'/registration'}
+              element={<ErrorPage />}
+            />
+            <Route
+              path={'/login'}
+              element={<ErrorPage />}
+            />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route
+              path={'/ideas/*'}
+              element={<ErrorPage />}
+            />
+            <Route
+              path={'/ideas/:ideaId'}
+              element={<ErrorPage />}
+            />
+            <Route
+              path={'/ideas/new'}
+              element={<ErrorPage />}
+            />
+            <Route
+              path={'/'}
+              element={<Home handleLogin={handleLogin} handleLogout={handleLogout} isLoggedIn={state.isLoggedIn} />}
+            />
+            <Route
+              path={'/dashboard'}
+              element={<ErrorPage />}
+            />
+            <Route
+              path={'/registration'}
+              element={<RegistrationPage handleLogin={handleLogin} isLoggedIn={state.isLoggedIn} />}
+            />
+            <Route
+              path={'/login'}
+              element={<LoginPage handleLogin={handleLogin} isLoggedIn={state.isLoggedIn} />}
+            />
+          </Routes>
+        ) }
       </header>
     </div>
   );

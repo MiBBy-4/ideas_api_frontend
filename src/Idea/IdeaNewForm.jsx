@@ -1,8 +1,9 @@
 import { TextField, Button } from '@mui/material';
 import { React, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { postIdeas } from '../apiRequests/IdeasRequests';
 
-function IdeaForm(props) {
+function IdeaNewForm(props) {
   const { userId } = props;
   const [state, setState] = useState({
     name: '',
@@ -12,6 +13,7 @@ function IdeaForm(props) {
     geo_focus: '',
     investor_requirements: '',
   });
+  const navigate = useNavigate();
 
   function handleIdeaChange(event) {
     const { target: { value } } = event;
@@ -25,6 +27,7 @@ function IdeaForm(props) {
   async function formSubmit(formData) {
     const data = new FormData(formData);
     await postIdeas(data, userId);
+    navigate('/ideas');
   }
 
   const handleSubmit = (event) => {
@@ -47,4 +50,4 @@ function IdeaForm(props) {
   );
 }
 
-export default IdeaForm;
+export default IdeaNewForm;

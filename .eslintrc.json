@@ -23,6 +23,7 @@
    "no-bitwise": "off",
    "max-len": "off",
    "object-shorthand": "off",
+   "implicit-arrow-linebreak": "off",
    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }

@@ -21,6 +21,8 @@ function App() {
     customer: {},
   });
 
+  const { customer: { role } } = state;
+
   async function checkLoginStatus() {
     const response = await sessionRequest();
     const { data: { customer, logged_in } } = response;
@@ -59,7 +61,7 @@ function App() {
       <header className="App-header">
         <Typography variant="h1">TEST</Typography>
         <hr />
-        { state.isLoggedIn && state.customer.role === 3 ? (
+        { state.isLoggedIn && role === 3 ? (
           <Routes>
             <Route
               path={'/ideas/:ideaId/update'}

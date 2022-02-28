@@ -32,7 +32,7 @@ export function setReaction(ideaId, reaction) {
   return axios.post(`${process.env.REACT_APP_API_URL}reactions`, {
     reaction: {
       idea_id: ideaId,
-      reaction: reaction,
+      liked: reaction,
     },
   }, { withCredentials: true });
 }

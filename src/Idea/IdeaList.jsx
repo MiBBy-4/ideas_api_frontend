@@ -6,6 +6,29 @@ import { getIdeas } from '../apiRequests/IdeasRequests';
 
 function IdeaList() {
   const [items, setItems] = useState([]);
+  const columns = [
+    {
+      field: 'id',
+      headerName: 'ID',
+      width: 70,
+      identity: true,
+    },
+    {
+      field: 'name',
+      headerName: 'Name',
+      width: 130,
+    },
+    {
+      field: 'description',
+      headerName: 'Description',
+      width: 130,
+    },
+    {
+      field: 'problem',
+      headerName: 'Problem',
+      width: 130,
+    },
+  ];
 
   useEffect(async () => {
     const response = await getIdeas();
@@ -14,12 +37,13 @@ function IdeaList() {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <Link to="/ideas/new">Create new Idea</Link>
-      <ul>
-        {items.map((item) => (
-          <IdeaItem key={item.id} item={item} />
-        ))}
-      </ul>
+      <DataGrid
+        rows={items}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        getRowId={(row) => row.id}
+      />
     </div>
   );
 }

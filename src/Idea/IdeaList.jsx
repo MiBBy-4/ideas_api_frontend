@@ -31,6 +31,9 @@ function IdeaList() {
               <TableCell align="right">Name</TableCell>
               <TableCell align="right">Description</TableCell>
               <TableCell align="right">Problem</TableCell>
+              <TableCell align="right">Sphere</TableCell>
+              <TableCell align="right">Geo focus</TableCell>
+              <TableCell align="right">Views</TableCell>
               <TableCell align="right">Action</TableCell>
             </TableRow>
           </TableHead>
@@ -44,6 +47,9 @@ function IdeaList() {
                 <TableCell align="right">{item.name}</TableCell>
                 <TableCell align="right">{item.description}</TableCell>
                 <TableCell align="right">{item.problem}</TableCell>
+                <TableCell align="right">{item.sphere}</TableCell>
+                <TableCell align="right">{item.geo_focus}</TableCell>
+                <TableCell align="right">{item.views}</TableCell>
                 <TableCell align="right"><Link to={`/ideas/${item.id}`} onClick={() => handleClick(item)}>View</Link></TableCell>
               </TableRow>
             ))}

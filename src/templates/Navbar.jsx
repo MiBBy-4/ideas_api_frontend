@@ -21,12 +21,14 @@ export default function IdeaNavbar(props) {
         <Navbar.Brand href="/">Ideas</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <NavDropdown title="Ideas" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="/ideas/">List of Ideas</NavDropdown.Item>
-              <NavDropdown.Item href="/ideas/new">Create a new Idea</NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
+          { isLoggedIn ? (
+            <Nav className="me-auto">
+              <NavDropdown title="Ideas" id="collasible-nav-dropdown">
+                <NavDropdown.Item href="/ideas/">List of Ideas</NavDropdown.Item>
+                <NavDropdown.Item href="/ideas/new">Create a new Idea</NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+          ) : (null)}
           { isLoggedIn ? (
             <Nav>
               <Nav.Link href="/" onClick={() => handleLogoutClick()}>Logout</Nav.Link>

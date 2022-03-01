@@ -3,7 +3,6 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import { Typography } from '@mui/material';
 import IdeaList from './Idea/IdeaList';
 import { sessionRequest } from './apiRequests/CustomerRequests';
 import Home from './Home';
@@ -14,6 +13,8 @@ import LoginPage from './auth/LoginPage';
 import RegistrationPage from './auth/RegistrationPage';
 import ErrorPage from './auth/ErrorPage';
 import IdeaUpdate from './Idea/IdeaUpdate';
+import IdeaNavbar from './templates/Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [state, setState] = useState({
@@ -59,8 +60,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Typography variant="h1">TEST</Typography>
-        <hr />
+        <IdeaNavbar isLoggedIn={state.isLoggedIn} customer={state.customer} />
         { state.isLoggedIn && role === 3 ? (
           <Routes>
             <Route

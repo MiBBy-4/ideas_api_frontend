@@ -16,7 +16,6 @@ export default function Home(props) {
       { isLoggedIn ? (
         <div>
           <Link to="/ideas">List of Ideas</Link>
-          <button type="submit" onClick={() => handleLogoutClick()}>Logout</button>
         </div>
       ) : (
         <div>

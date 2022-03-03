@@ -37,3 +37,7 @@ export function setReaction(ideaId, reaction) {
     },
   }, { withCredentials: true });
 }
+
+export function updatePublicationPeriod(id) {
+  return axios.patch(`${process.env.REACT_APP_API_URL}api/v1/publication_period_update/${id}`, { withCredentials: true });
+}

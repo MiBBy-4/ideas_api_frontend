@@ -31,6 +31,18 @@ export default function IdeaShow(props) {
     await deleteIdea(ideaId);
     navigate('/ideas');
   }
+
+  function comparingDates() {
+    let date = new Date(idea.publication_period);
+    let today = new Date();
+    if (today <= date && today >= date.setDate(date.getDate() - 10)) {
+      return true;
+    }
+    return false;
+  }
+
+  console.log(comparingDates());
+
   return (
     <div>
       <h1>
@@ -40,9 +52,11 @@ export default function IdeaShow(props) {
       <button type="submit" onClick={() => handleClick(false)}>Dislike</button>
       { customer.role === 3 || idea.customer_id === customer.id ? (
         <div>
-          <button type="submit" onClick={() => handleUpdateButton()}>update</button>
-          <button type="submit" onClick={() => handleDeleteButton()}>delete</button>
-          <button type="submit" onClick={() => handleExtendButton()}>Extend</button>
+          <button type="submit" onClick={() => handleUpdateButton()}>Update</button>
+          <button type="submit" onClick={() => handleDeleteButton()}>Delete</button>
+          { comparingDates() ? (
+            <button type="submit" onClick={() => handleExtendButton()}>Extend</button>
+          ) : (null)}
         </div>
       ) : (null)}
       <Link to="/ideas">Go back!</Link>

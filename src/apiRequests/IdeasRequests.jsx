@@ -30,7 +30,7 @@ export function changeNumberOfViews(idea) {
 }
 
 export function setReaction(ideaId, reaction) {
-  return axios.post(`${process.env.REACT_APP_API_URL}reactions`, {
+  return axios.post(`${process.env.REACT_APP_API_URL}api/v1/reactions`, {
     reaction: {
       idea_id: ideaId,
       liked: reaction,

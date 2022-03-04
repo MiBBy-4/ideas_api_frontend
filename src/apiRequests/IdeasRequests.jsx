@@ -39,5 +39,5 @@ export function setReaction(ideaId, reaction) {
 }
 
 export function updatePublicationPeriod(id) {
-  return axios.patch(`${process.env.REACT_APP_API_URL}api/v1/publication_period_update/${id}`, { withCredentials: true });
+  return axios.patch(`${process.env.REACT_APP_API_URL}api/v1/ideas/${id}/update_publication_period`, { withCredentials: true });
 }

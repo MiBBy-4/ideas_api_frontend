@@ -1,9 +1,9 @@
-const customerRoles = {
+const CUSTOMER_ROLES = {
   businessman: 1,
   investor: 2,
   admin: 3,
 };
 
 export const roles = (name) => {
-  return customerRoles[name];
+  return CUSTOMER_ROLES[name];
 };

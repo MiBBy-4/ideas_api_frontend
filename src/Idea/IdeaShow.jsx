@@ -10,7 +10,7 @@ export default function IdeaShow(props) {
   const { ideaId } = useParams();
   const [idea, setIdea] = useState({});
   const { customer } = props;
-  const daysDiff = 10;
+  const DAYS_DIFF = 10;
 
   useEffect(async () => {
     const response = await getIdea(ideaId);
@@ -37,7 +37,7 @@ export default function IdeaShow(props) {
   function comparingDates() {
     let date = new Date(idea.publication_period);
     let today = new Date();
-    if (today <= date && today >= date.setDate(date.getDate() - daysDiff)) {
+    if (today <= date && today >= date.setDate(date.getDate() - DAYS_DIFF)) {
       return true;
     }
     return false;

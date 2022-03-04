@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getIdea, setReaction, updatePublicationPeriod } from '../apiRequests/IdeasRequests';
 import { deleteIdea } from '../apiRequests/AdminRequests';
+import { roles } from '../Roles';
 
 export default function IdeaShow(props) {
   const navigate = useNavigate();
@@ -10,7 +11,6 @@ export default function IdeaShow(props) {
   const [idea, setIdea] = useState({});
   const { customer } = props;
   const daysDiff = 10;
-  const adminRole = 3;
 
   useEffect(async () => {
     const response = await getIdea(ideaId);
@@ -50,7 +50,7 @@ export default function IdeaShow(props) {
       </h1>
       <button type="submit" onClick={() => handleClick(true)}>Like</button>
       <button type="submit" onClick={() => handleClick(false)}>Dislike</button>
-      { customer.role === adminRole || idea.customer_id === customer.id ? (
+      { customer.role === roles('admin') || idea.customer_id === customer.id ? (
         <div>
           <button type="submit" onClick={() => handleUpdateButton()}>Update</button>
           <button type="submit" onClick={() => handleDeleteButton()}>Delete</button>

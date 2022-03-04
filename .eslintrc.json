@@ -24,6 +24,7 @@
    "max-len": "off",
    "object-shorthand": "off",
    "implicit-arrow-linebreak": "off",
+   "arrow-body-style": "off",
    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }

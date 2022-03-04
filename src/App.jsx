@@ -15,6 +15,7 @@ import ErrorPage from './auth/ErrorPage';
 import IdeaUpdate from './Idea/IdeaUpdate';
 import IdeaNavbar from './templates/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { roles } from './Roles';
 
 function App() {
   const [state, setState] = useState({
@@ -61,7 +62,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <IdeaNavbar isLoggedIn={state.isLoggedIn} customer={state.customer} />
-        { state.isLoggedIn && role === 3 ? (
+        { state.isLoggedIn && role === roles('admin') ? (
           <Routes>
             <Route
               path={'/ideas/:ideaId/update'}

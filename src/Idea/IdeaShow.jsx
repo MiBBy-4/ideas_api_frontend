@@ -9,6 +9,8 @@ export default function IdeaShow(props) {
   const { ideaId } = useParams();
   const [idea, setIdea] = useState({});
   const { customer } = props;
+  const daysDiff = 10;
+  const adminRole = 3;
 
   useEffect(async () => {
     const response = await getIdea(ideaId);
@@ -35,13 +37,11 @@ export default function IdeaShow(props) {
   function comparingDates() {
     let date = new Date(idea.publication_period);
     let today = new Date();
-    if (today <= date && today >= date.setDate(date.getDate() - 10)) {
+    if (today <= date && today >= date.setDate(date.getDate() - daysDiff)) {
       return true;
     }
     return false;
   }
-
-  console.log(comparingDates());
 
   return (
     <div>
@@ -50,7 +50,7 @@ export default function IdeaShow(props) {
       </h1>
       <button type="submit" onClick={() => handleClick(true)}>Like</button>
       <button type="submit" onClick={() => handleClick(false)}>Dislike</button>
-      { customer.role === 3 || idea.customer_id === customer.id ? (
+      { customer.role === adminRole || idea.customer_id === customer.id ? (
         <div>
           <button type="submit" onClick={() => handleUpdateButton()}>Update</button>
           <button type="submit" onClick={() => handleDeleteButton()}>Delete</button>

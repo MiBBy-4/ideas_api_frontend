@@ -5,8 +5,8 @@ export default function LoginPage(props) {
   const navigate = useNavigate();
 
   function handleSuccessfulAuth(data) {
-    props.handleLogin(data);
     navigate('/');
+    props.handleLogin(data);
   }
 
   return (

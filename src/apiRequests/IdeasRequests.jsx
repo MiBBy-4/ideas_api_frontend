@@ -9,6 +9,8 @@ export function postIdeas(data, userId) {
       sphere: data.get('sphere'),
       geo_focus: data.get('geo_focus'),
       investor_requirements: data.get('investor_requirements'),
+      team: data.get('team'),
+      next_steps: data.get('next_steps'),
       customer_id: userId,
     },
   }, { withCredentials: true });

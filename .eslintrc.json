@@ -25,6 +25,7 @@
    "object-shorthand": "off",
    "implicit-arrow-linebreak": "off",
    "arrow-body-style": "off",
+   "array-callback-return": "off",
    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }

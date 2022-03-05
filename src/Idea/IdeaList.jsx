@@ -8,6 +8,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { getIdeas, changeNumberOfViews } from '../apiRequests/IdeasRequests';
+import {
+  likesCount,
+  dislikesCount,
+  avgLikes,
+  avgDislikes,
+} from './ReactionsCount';
 
 function IdeaList() {
   const [items, setItems] = useState([]);
@@ -33,7 +39,13 @@ function IdeaList() {
               <TableCell align="right">Problem</TableCell>
               <TableCell align="right">Sphere</TableCell>
               <TableCell align="right">Geo focus</TableCell>
+              <TableCell align="right">Team</TableCell>
+              <TableCell align="right">Steps</TableCell>
               <TableCell align="right">Views</TableCell>
+              <TableCell align="right">Likes</TableCell>
+              <TableCell align="right">Dislikes</TableCell>
+              <TableCell align="right">AVG Likes</TableCell>
+              <TableCell align="right">AVG Dislikes</TableCell>
               <TableCell align="right">Action</TableCell>
             </TableRow>
           </TableHead>
@@ -49,7 +61,19 @@ function IdeaList() {
                 <TableCell align="right">{item.problem}</TableCell>
                 <TableCell align="right">{item.sphere}</TableCell>
                 <TableCell align="right">{item.geo_focus}</TableCell>
+                <TableCell align="right">{item.team}</TableCell>
+                <TableCell align="right">{item.next_steps}</TableCell>
                 <TableCell align="right">{item.views}</TableCell>
+                <TableCell align="right">{likesCount(item.reactions)}</TableCell>
+                <TableCell align="right">{dislikesCount(item.reactions)}</TableCell>
+                <TableCell align="right">
+                  {avgLikes(item.reactions, item.views)}
+                  %
+                </TableCell>
+                <TableCell align="right">
+                  {avgDislikes(item.reactions, item.views)}
+                  %
+                </TableCell>
                 <TableCell align="right"><Link to={`/ideas/${item.id}`} onClick={() => handleClick(item)}>View</Link></TableCell>
               </TableRow>
             ))}

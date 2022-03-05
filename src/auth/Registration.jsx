@@ -1,11 +1,5 @@
-import React, { Component, useState } from 'react';
-import {
-  TextField,
-  Button,
-  InputLabel,
-  Select,
-  MenuItem,
-} from '@mui/material';
+import React, { useState } from 'react';
+import { Form, Button, Container } from 'react-bootstrap';
 import { registrationRequest } from '../apiRequests/CustomerRequests';
 
 export default function Registration(props) {
@@ -19,7 +13,7 @@ export default function Registration(props) {
 
   async function formSubmit() {
     const response = await registrationRequest(state.email, state.password, state.password_confirmation, state.role);
-    if (response.data.status === 'created') {
+    if (response.data.status === 201) {
       props.handleSuccessfulAuth(response.data);
     }
   }
@@ -38,25 +32,32 @@ export default function Registration(props) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} id="customer_form" autoComplete="off">
-        <TextField id="email_input" label="Email" variant="outlined" type="text" name="email" onChange={handleChange} />
-        <TextField id="password_input" label="Password" variant="outlined" type="password" name="password" onChange={handleChange} />
-        <TextField id="password_confirmation_input" label="Password Confirmation" variant="outlined" type="password" name="password_confirmation" onChange={handleChange} />
-        <InputLabel id="role">Role</InputLabel>
-        <Select
-          labelId="role"
-          id="role"
-          name="role"
-          value={state.role}
-          label="Role"
-          onChange={handleChange}
-        >
-          <MenuItem value={0}>Businessman</MenuItem>
-          <MenuItem value={1}>Investor</MenuItem>
-        </Select>
-        <Button variant="contained" color="primary" type="submit"> Register </Button>
-      </form>
-    </div>
+    <Container>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="email" placeholder="Enter your email" name="email" onChange={handleChange} />
+          <Form.Text className="text-muted">
+            We&apos;ll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Enter your password" name="password" onChange={handleChange} />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Password Confirmation</Form.Label>
+          <Form.Control type="password" placeholder="Enter your password" name="password_confirmation" onChange={handleChange} />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Select Role</Form.Label>
+          <Form.Select name="role" onChange={handleChange}>
+            <option value={0}>Businessman</option>
+            <option value={1}>Investor</option>
+          </Form.Select>
+        </Form.Group>
+        <Button variant="primary" type="submit">Register</Button>
+      </Form>
+    </Container>
   );
 }

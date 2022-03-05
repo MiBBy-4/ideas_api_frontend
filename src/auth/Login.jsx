@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import { TextField, Button } from '@mui/material';
+import React, { useState } from 'react';
+import { Form, Button, Container } from 'react-bootstrap';
 import { loginRequest } from '../apiRequests/CustomerRequests';
 
 export default function Login(props) {
@@ -8,10 +8,9 @@ export default function Login(props) {
     password: '',
     loginErrors: '',
   });
-
   async function formSubmit(event) {
     const response = await loginRequest(state.email, state.password);
-    if (response.data.status === 'created') {
+    if (response.data.status === 201) {
       props.handleSuccessfulAuth(response.data);
     }
   }
@@ -30,12 +29,21 @@ export default function Login(props) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} id="customer_form" autoComplete="off">
-        <TextField id="email_input" label="Email" variant="outlined" type="text" name="email" onChange={handleChange} />
-        <TextField id="password_input" label="Password" variant="outlined" type="password" name="password" onChange={handleChange} />
-        <Button variant="contained" color="primary" type="submit"> Login </Button>
-      </form>
-    </div>
+    <Container>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" name="email" onChange={handleChange} />
+          <Form.Text className="text-muted">
+            We&apos;ll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Enter your password" name="password" onChange={handleChange} />
+        </Form.Group>
+        <Button variant="primary" type="submit">Login</Button>
+      </Form>
+    </Container>
   );
 }

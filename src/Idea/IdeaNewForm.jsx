@@ -18,8 +18,7 @@ function IdeaNewForm(props) {
   const navigate = useNavigate();
 
   function handleIdeaChange(event) {
-    const { target: { value } } = event;
-    const { target: { name } } = event;
+    const { target: { value, name } } = event;
     setState({
       ...state,
       [name]: value,

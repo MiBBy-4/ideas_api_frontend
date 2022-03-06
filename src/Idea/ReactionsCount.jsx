@@ -1,23 +1,21 @@
 const ONE_HUNDRED_PERCENT = 100;
 
 export function likesCount(reactions) {
-  let count = 0;
-  reactions.map((reaction) => {
+  return reactions.reduce((count, reaction) => {
     if (reaction.liked) {
       count += 1;
     }
-  });
-  return count;
+    return count;
+  }, 0);
 }
 
 export function dislikesCount(reactions) {
-  let count = 0;
-  reactions.map((reaction) => {
+  return reactions.reduce((count, reaction) => {
     if (!reaction.liked) {
       count += 1;
     }
-  });
-  return count;
+    return count;
+  }, 0);
 }
 
 export function avgLikes(reactions, views) {

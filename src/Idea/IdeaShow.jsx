@@ -1,6 +1,14 @@
 import { useParams, useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import
+{
+  Card,
+  Container,
+  ListGroup,
+  ListGroupItem,
+  Button,
+} from 'react-bootstrap';
 import { getIdea, setReaction, updatePublicationPeriod } from '../apiRequests/IdeasRequests';
 import { deleteIdea } from '../apiRequests/AdminRequests';
 import { roles } from '../Roles';
@@ -44,22 +52,63 @@ export default function IdeaShow(props) {
   }
 
   return (
-    <div>
-      <h1>
-        {idea.name}
-      </h1>
-      <button type="submit" onClick={() => handleClick(true)}>Like</button>
-      <button type="submit" onClick={() => handleClick(false)}>Dislike</button>
-      { customer.role === roles('admin') || idea.customer_id === customer.id ? (
-        <div>
-          <button type="submit" onClick={() => handleUpdateButton()}>Update</button>
-          <button type="submit" onClick={() => handleDeleteButton()}>Delete</button>
-          { comparingDates() ? (
-            <button type="submit" onClick={() => handleExtendButton()}>Extend</button>
-          ) : (null)}
-        </div>
-      ) : (null)}
-      <Link to="/ideas">Go back!</Link>
-    </div>
+    <Container>
+      <Card className="mt-5" border="primary">
+        <Card.Body>
+          <Card.Title className="text-center">
+            {idea.name}
+          </Card.Title>
+          <Card.Subtitle className="mb-2 text-muted">
+            {idea.description}
+          </Card.Subtitle>
+          <ListGroup className="list-group=flush">
+            <ListGroupItem>
+              <b>Problem: </b>
+              {idea.problem}
+            </ListGroupItem>
+            <ListGroupItem>
+              <b>Sphere: </b>
+              {idea.sphere}
+            </ListGroupItem>
+            <ListGroupItem>
+              <b>Geo Focus: </b>
+              {idea.geo_focus}
+            </ListGroupItem>
+            <ListGroupItem>
+              <b>List of team: </b>
+              {idea.team}
+            </ListGroupItem>
+            <ListGroupItem>
+              <b>About Future: </b>
+              {idea.next_steps}
+            </ListGroupItem>
+            <ListGroupItem>
+              <b>Investor Requirements: </b>
+              {idea.investor_requirements}
+            </ListGroupItem>
+          </ListGroup>
+          <Card.Body className="d-flex justify-content-center">
+            <Button variant="success" type="submit" onClick={() => handleClick(true)}>Like</Button>
+            <Button variant="danger" type="submit" onClick={() => handleClick(false)}>Dislike</Button>
+            { customer.role === roles('admin') || idea.customer_id === customer.id ? (
+              <div>
+                <Button variant="info" type="submit" onClick={() => handleUpdateButton()}>Update</Button>
+                <Button variant="danger" type="submit" onClick={() => handleDeleteButton()}>Delete</Button>
+                { comparingDates() ? (
+                  <Button variant="warning" type="submit" onClick={() => handleExtendButton()}>Extend</Button>
+                ) : (null)}
+              </div>
+            ) : (null)}
+          </Card.Body>
+          <Card.Footer className="text-center">
+            Views:
+            {idea.views}
+          </Card.Footer>
+        </Card.Body>
+      </Card>
+      <Container className="d-flex justify-content-center mt-4">
+        <Button variant="secondary" href="/ideas">Go back!</Button>
+      </Container>
+    </Container>
   );
 }

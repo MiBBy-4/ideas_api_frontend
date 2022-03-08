@@ -1,4 +1,4 @@
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container } from 'react-bootstrap';
 import { React, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { postIdeas } from '../apiRequests/IdeasRequests';
@@ -37,7 +37,7 @@ function IdeaNewForm(props) {
   };
 
   return (
-    <div>
+    <Container>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>
@@ -75,7 +75,7 @@ function IdeaNewForm(props) {
           Create
         </Button>
       </Form>
-    </div>
+    </Container>
   );
 }
 

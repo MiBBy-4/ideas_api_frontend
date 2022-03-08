@@ -57,12 +57,12 @@ function IdeaList() {
               >
                 <TableCell align="right">{item.id}</TableCell>
                 <TableCell align="right">{item.name}</TableCell>
-                <TableCell align="right">{item.description}</TableCell>
-                <TableCell align="right">{item.problem}</TableCell>
+                <TableCell align="right">{item.description.length > 25 ? (`${item.description.substring(0, 24)}...`) : (item.description)}</TableCell>
+                <TableCell align="right">{item.problem.length > 25 ? (`${item.problem.substring(0, 24)}...`) : (item.problem)}</TableCell>
                 <TableCell align="right">{item.sphere}</TableCell>
                 <TableCell align="right">{item.geo_focus}</TableCell>
-                <TableCell align="right">{item.team}</TableCell>
-                <TableCell align="right">{item.next_steps}</TableCell>
+                <TableCell align="right">{item.team.length > 25 ? (`${item.team.substring(0, 24)}...`) : (item.team)}</TableCell>
+                <TableCell align="right">{item.next_steps.length > 25 ? (`${item.next_steps.substring(0, 24)}...`) : (item.next_steps)}</TableCell>
                 <TableCell align="right">{item.views}</TableCell>
                 <TableCell align="right">{likesCount(item.reactions)}</TableCell>
                 <TableCell align="right">{dislikesCount(item.reactions)}</TableCell>

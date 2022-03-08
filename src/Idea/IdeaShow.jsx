@@ -8,6 +8,7 @@ import
   ListGroup,
   ListGroupItem,
   Button,
+  Modal,
 } from 'react-bootstrap';
 import { getIdea, setReaction, updatePublicationPeriod } from '../apiRequests/IdeasRequests';
 import { deleteIdea } from '../apiRequests/AdminRequests';
@@ -18,6 +19,7 @@ export default function IdeaShow(props) {
   const { ideaId } = useParams();
   const [idea, setIdea] = useState({});
   const { customer } = props;
+  const [show, setShow] = useState(false);
   const DAYS_DIFF = 10;
 
   useEffect(async () => {
@@ -50,6 +52,9 @@ export default function IdeaShow(props) {
     }
     return false;
   }
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <Container>
@@ -93,7 +98,20 @@ export default function IdeaShow(props) {
             { customer.role === roles('admin') || idea.customer_id === customer.id ? (
               <div>
                 <Button variant="info" type="submit" onClick={() => handleUpdateButton()}>Update</Button>
-                <Button variant="danger" type="submit" onClick={() => handleDeleteButton()}>Delete</Button>
+                <Button variant="danger" type="submit" onClick={handleShow}>Delete</Button>
+                <Modal
+                  show={show}
+                  onHide={handleClose}
+                  backdrop="static"
+                >
+                  <Modal.Header closeButton>
+                    <Modal.Title>Are you sure?</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>Close</Button>
+                    <Button variant="danger" onClick={() => handleDeleteButton()}>Sure</Button>
+                  </Modal.Footer>
+                </Modal>
                 { comparingDates() ? (
                   <Button variant="warning" type="submit" onClick={() => handleExtendButton()}>Extend</Button>
                 ) : (null)}

@@ -14,6 +14,7 @@ import {
   avgLikes,
   avgDislikes,
 } from './ReactionsCount';
+import { responsesCount } from './ResponsesCount';
 
 function IdeaList() {
   const [items, setItems] = useState([]);
@@ -42,6 +43,7 @@ function IdeaList() {
               <TableCell align="right">Team</TableCell>
               <TableCell align="right">Steps</TableCell>
               <TableCell align="right">Views</TableCell>
+              <TableCell align="right">Responses</TableCell>
               <TableCell align="right">Likes</TableCell>
               <TableCell align="right">Dislikes</TableCell>
               <TableCell align="right">AVG Likes</TableCell>
@@ -64,6 +66,7 @@ function IdeaList() {
                 <TableCell align="right">{item.team.length > 25 ? (`${item.team.substring(0, 24)}...`) : (item.team)}</TableCell>
                 <TableCell align="right">{item.next_steps.length > 25 ? (`${item.next_steps.substring(0, 24)}...`) : (item.next_steps)}</TableCell>
                 <TableCell align="right">{item.views}</TableCell>
+                <TableCell align="right">{responsesCount(item.responses)}</TableCell>
                 <TableCell align="right">{likesCount(item.reactions)}</TableCell>
                 <TableCell align="right">{dislikesCount(item.reactions)}</TableCell>
                 <TableCell align="right">

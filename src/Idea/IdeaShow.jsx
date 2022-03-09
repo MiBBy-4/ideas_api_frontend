@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import
 {
   Card,
@@ -10,7 +9,13 @@ import
   Button,
   Modal,
 } from 'react-bootstrap';
-import { getIdea, setReaction, updatePublicationPeriod } from '../apiRequests/IdeasRequests';
+import
+{
+  getIdea,
+  setReaction,
+  updatePublicationPeriod,
+  setResponse,
+} from '../apiRequests/IdeasRequests';
 import { deleteIdea } from '../apiRequests/AdminRequests';
 import { roles } from '../Roles';
 
@@ -40,8 +45,8 @@ export default function IdeaShow(props) {
   }
 
   async function handleDeleteButton() {
-    await deleteIdea(ideaId);
     navigate('/ideas');
+    await deleteIdea(ideaId);
   }
 
   function comparingDates() {
@@ -51,6 +56,10 @@ export default function IdeaShow(props) {
       return true;
     }
     return false;
+  }
+
+  async function handleInterestingButton() {
+    await setResponse(ideaId);
   }
 
   const handleClose = () => setShow(false);
@@ -95,6 +104,11 @@ export default function IdeaShow(props) {
           <Card.Body className="d-flex justify-content-center">
             <Button variant="success" type="submit" onClick={() => handleClick(true)}>Like</Button>
             <Button variant="danger" type="submit" onClick={() => handleClick(false)}>Dislike</Button>
+            { customer.role === roles('investor') ? (
+              <div>
+                <Button variant="outline-success" onClick={() => handleInterestingButton()}>Interesting</Button>
+              </div>
+            ) : (null) }
             { customer.role === roles('admin') || idea.customer_id === customer.id ? (
               <div>
                 <Button variant="info" type="submit" onClick={() => handleUpdateButton()}>Update</Button>

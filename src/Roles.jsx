@@ -1,7 +1,7 @@
 const CUSTOMER_ROLES = {
-  businessman: 1,
-  investor: 2,
-  admin: 3,
+  businessman: 0,
+  investor: 1,
+  admin: 2,
 };
 
 export const roles = (name) => {

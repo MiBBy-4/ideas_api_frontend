@@ -61,7 +61,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <IdeaNavbar isLoggedIn={state.isLoggedIn} customer={state.customer} />
+        <IdeaNavbar isLoggedIn={state.isLoggedIn} handleLogout={handleLogout} customer={state.customer} />
         { state.isLoggedIn && role === roles('admin') ? (
           <Routes>
             <Route

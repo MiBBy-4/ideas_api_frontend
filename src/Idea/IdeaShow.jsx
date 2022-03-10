@@ -18,11 +18,12 @@ import
 } from '../apiRequests/IdeasRequests';
 import { deleteIdea } from '../apiRequests/AdminRequests';
 import { roles } from '../Roles';
+import { responsesCount } from './ResponsesCount';
 
 export default function IdeaShow(props) {
   const navigate = useNavigate();
   const { ideaId } = useParams();
-  const [idea, setIdea] = useState({});
+  const [idea, setIdea] = useState([]);
   const { customer } = props;
   const [show, setShow] = useState(false);
   const DAYS_DIFF = 10;
@@ -134,7 +135,12 @@ export default function IdeaShow(props) {
           </Card.Body>
           <Card.Footer className="text-center">
             Views:
-            {idea.views}
+            {` ${idea.views} `}
+            Responses:
+            {responsesCount(idea.responses)}
+            { customer.id === idea.customer_id ? (
+              <Button size="sm" variant="light">Check responses</Button>
+            ) : (null) }
           </Card.Footer>
         </Card.Body>
       </Card>

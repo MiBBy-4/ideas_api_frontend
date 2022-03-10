@@ -8,11 +8,24 @@ export default function Registration(props) {
     password: '',
     password_confirmation: '',
     registrationErrors: '',
+    name: '',
+    surname: '',
+    phone_number: '',
+    skype: '',
     role: '',
   });
 
   async function formSubmit() {
-    const response = await registrationRequest(state.email, state.password, state.password_confirmation, state.role);
+    const response = await registrationRequest(
+      state.email,
+      state.password,
+      state.password_confirmation,
+      state.role,
+      state.name,
+      state.surname,
+      state.phone_number,
+      state.skype,
+    );
     if (response.data.status === 201) {
       props.handleSuccessfulAuth(response.data);
     }
@@ -48,6 +61,22 @@ export default function Registration(props) {
         <Form.Group className="mb-3">
           <Form.Label>Password Confirmation</Form.Label>
           <Form.Control type="password" placeholder="Enter your password" name="password_confirmation" onChange={handleChange} />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Your Name</Form.Label>
+          <Form.Control type="text" placeholder="Enter your first name" name="name" onChange={handleChange} />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Your Surname</Form.Label>
+          <Form.Control type="text" placeholder="Enter your surname" name="surname" onChange={handleChange} />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Your Phone Number</Form.Label>
+          <Form.Control type="text" placeholder="Enter your number" name="phone_number" onChange={handleChange} />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Your Skype</Form.Label>
+          <Form.Control type="text" placeholder="Enter your skype login" name="skype" onChange={handleChange} />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Select Role</Form.Label>

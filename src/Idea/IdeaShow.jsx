@@ -26,6 +26,7 @@ export default function IdeaShow(props) {
   const [idea, setIdea] = useState([]);
   const { customer } = props;
   const [show, setShow] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
   const DAYS_DIFF = 10;
 
   useEffect(async () => {
@@ -137,9 +138,30 @@ export default function IdeaShow(props) {
             Views:
             {` ${idea.views} `}
             Responses:
-            {responsesCount(idea.responses)}
+            {idea.responses ? (responsesCount(idea.responses)) : (0)}
             { customer.id === idea.customer_id ? (
-              <Button size="sm" variant="light">Check responses</Button>
+              <div>
+                <Button size="sm" variant="light" onClick={() => setModalShow(true)}>Check responses</Button>
+                <Modal
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                  size="lg"
+                  centered
+                >
+                  <Modal.Header className="text-center">Investors</Modal.Header>
+                  <Modal.Body>
+                    <h4>Centered Modal</h4>
+                    <p>
+                      Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                      dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+                      consectetur ac, vestibulum at eros.
+                    </p>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button onClick={() => setModalShow(false)}>Close</Button>
+                  </Modal.Footer>
+                </Modal>
+              </div>
             ) : (null) }
           </Card.Footer>
         </Card.Body>

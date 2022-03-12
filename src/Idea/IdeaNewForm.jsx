@@ -2,6 +2,7 @@ import { Form, Button, Container } from 'react-bootstrap';
 import { React, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { postIdeas } from '../apiRequests/IdeasRequests';
+import Errors from '../Errors';
 
 function IdeaNewForm(props) {
   const { userId } = props;
@@ -15,6 +16,7 @@ function IdeaNewForm(props) {
     team: '',
     next_steps: '',
   });
+  const [error, setErrors] = useState([]);
   const navigate = useNavigate();
 
   function handleIdeaChange(event) {
@@ -27,8 +29,13 @@ function IdeaNewForm(props) {
 
   async function formSubmit(formData) {
     const data = new FormData(formData);
-    await postIdeas(data, userId);
-    navigate('/ideas');
+    const response = await postIdeas(data, userId);
+    const { data: { status, errors } } = response;
+    if (status === 201) {
+      navigate('/ideas');
+    } else {
+      setErrors(errors);
+    }
   }
 
   const handleSubmit = (event) => {
@@ -38,6 +45,9 @@ function IdeaNewForm(props) {
 
   return (
     <Container>
+      { error.length !== 0 ? (
+        <Errors errors={error} />
+      ) : (null) }
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>

@@ -24,7 +24,6 @@ export default function Registration(props) {
       state.role,
       state.name,
       state.surname,
-      state.phone_number,
       state.skype,
     );
     const { data: { status, errors } } = response;
@@ -76,10 +75,6 @@ export default function Registration(props) {
         <Form.Group className="mb-3">
           <Form.Label>Your Surname</Form.Label>
           <Form.Control type="text" placeholder="Enter your surname" name="surname" onChange={handleChange} />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Your Phone Number</Form.Label>
-          <Form.Control type="text" placeholder="Enter your number" name="phone_number" onChange={handleChange} />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Your Skype</Form.Label>

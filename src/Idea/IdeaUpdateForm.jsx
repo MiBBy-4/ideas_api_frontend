@@ -2,6 +2,7 @@ import { TextField, Button } from '@mui/material';
 import { React, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { updateIdea } from '../apiRequests/AdminRequests';
+import Errors from '../Errors';
 
 export default function IdeaUpdateForm(props) {
   const { idea } = props;
@@ -13,6 +14,7 @@ export default function IdeaUpdateForm(props) {
     geo_focus: idea.geo_focus,
     investor_requirements: idea.investor_requirements,
   });
+  const [error, setErrors] = useState([]);
 
   const navigate = useNavigate();
 
@@ -27,8 +29,13 @@ export default function IdeaUpdateForm(props) {
   async function formSubmit(formData) {
     const data = new FormData(formData);
     const { id } = idea;
-    await updateIdea(id, data);
-    navigate('/ideas');
+    const response = await updateIdea(id, data);
+    const { data: { status, errors } } = response;
+    if (status === 200) {
+      navigate('/ideas')
+    } else {
+      setErrors(errors);
+    }
   }
 
   const handleSubmit = (event) => {
@@ -38,6 +45,9 @@ export default function IdeaUpdateForm(props) {
 
   return (
     <div>
+      { error.length !== 0 ? (
+        <Errors errors={error} />
+      ) : (null) }
       <form onSubmit={handleSubmit} id="idea_form" autoComplete="off">
         <TextField id="name_input" label="Name of idea" value={state.name} variant="outlined" type="text" name="name" onChange={handleIdeaChange} />
         <TextField id="description_input" label="description" value={state.description} variant="outlined" type="text" name="description" onChange={handleIdeaChange} />

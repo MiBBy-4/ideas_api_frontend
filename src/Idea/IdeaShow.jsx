@@ -15,10 +15,12 @@ import
   setReaction,
   updatePublicationPeriod,
   setResponse,
+  getResponse,
 } from '../apiRequests/IdeasRequests';
 import { deleteIdea } from '../apiRequests/AdminRequests';
 import { roles } from '../Roles';
 import { responsesCount } from './ResponsesCount';
+import InvestorsModal from '../templates/InvestorsModal';
 
 export default function IdeaShow(props) {
   const navigate = useNavigate();
@@ -148,14 +150,15 @@ export default function IdeaShow(props) {
                   size="lg"
                   centered
                 >
-                  <Modal.Header className="text-center">Investors</Modal.Header>
+                  <Modal.Header>Investors</Modal.Header>
                   <Modal.Body>
-                    <h4>Centered Modal</h4>
-                    <p>
-                      Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                      dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                      consectetur ac, vestibulum at eros.
-                    </p>
+                    {idea.responses ? (
+                      <ul>
+                        { idea.responses.map((response) => (
+                          <InvestorsModal id={response.id} />
+                        )) }
+                      </ul>
+                    ) : (null)}
                   </Modal.Body>
                   <Modal.Footer>
                     <Button onClick={() => setModalShow(false)}>Close</Button>

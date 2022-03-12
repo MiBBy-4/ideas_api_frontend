@@ -51,3 +51,7 @@ export function setResponse(ideaId) {
     },
   }, { withCredentials: true });
 }
+
+export function getResponse(responseId) {
+  return axios.get(`${process.env.REACT_APP_API_URL}api/v1/responses/${responseId}`, { withCredentials: true });
+}

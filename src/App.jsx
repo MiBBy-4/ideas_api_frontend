@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {
   Routes,
   Route,
+  useNavigate,
 } from 'react-router-dom';
 import IdeaList from './Idea/IdeaList';
 import { sessionRequest } from './apiRequests/CustomerRequests';
@@ -22,6 +23,7 @@ function App() {
     isLoggedIn: false,
     customer: {},
   });
+  const navigate = useNavigate();
 
   const { customer: { role } } = state;
 
@@ -56,6 +58,7 @@ function App() {
       isLoggedIn: false,
       customer: {},
     });
+    navigate('/');
   }
 
   return (

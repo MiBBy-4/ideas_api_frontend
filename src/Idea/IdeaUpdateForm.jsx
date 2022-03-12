@@ -1,4 +1,4 @@
-import { TextField, Button } from '@mui/material';
+import { Form, Button, Container } from 'react-bootstrap';
 import { React, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { updateIdea } from '../apiRequests/AdminRequests';
@@ -13,6 +13,8 @@ export default function IdeaUpdateForm(props) {
     sphere: idea.sphere,
     geo_focus: idea.geo_focus,
     investor_requirements: idea.investor_requirements,
+    next_steps: idea.next_steps,
+    team: idea.team,
   });
   const [error, setErrors] = useState([]);
 
@@ -32,7 +34,7 @@ export default function IdeaUpdateForm(props) {
     const response = await updateIdea(id, data);
     const { data: { status, errors } } = response;
     if (status === 200) {
-      navigate('/ideas')
+      navigate('/ideas');
     } else {
       setErrors(errors);
     }
@@ -44,19 +46,47 @@ export default function IdeaUpdateForm(props) {
   };
 
   return (
-    <div>
+    <Container>
       { error.length !== 0 ? (
         <Errors errors={error} />
       ) : (null) }
-      <form onSubmit={handleSubmit} id="idea_form" autoComplete="off">
-        <TextField id="name_input" label="Name of idea" value={state.name} variant="outlined" type="text" name="name" onChange={handleIdeaChange} />
-        <TextField id="description_input" label="description" value={state.description} variant="outlined" type="text" name="description" onChange={handleIdeaChange} />
-        <TextField id="problem_input" label="problem" value={state.problem} variant="outlined" type="text" name="problem" onChange={handleIdeaChange} />
-        <TextField id="sphere_input" label="sphere" value={state.sphere} variant="outlined" type="text" name="sphere" onChange={handleIdeaChange} />
-        <TextField id="geo_focus_input" label="geo_focus" value={state.geo_focus} variant="outlined" type="text" name="geo_focus" onChange={handleIdeaChange} />
-        <TextField id="investor_requirements_input" label="investor_requirements" value={state.investor_requirements} variant="outlined" type="text" name="investor_requirements" onChange={handleIdeaChange} />
-        <Button variant="contained" color="primary" type="submit"> Update Idea </Button>
-      </form>
-    </div>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Name</Form.Label>
+          <Form.Control type="text" value={state.name} placeholder="Name of my Idea" name="name" onChange={handleIdeaChange} />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Description</Form.Label>
+          <Form.Control as="textarea" rows={3} value={state.description} placeholder="Description of my Idea" name="description" onChange={handleIdeaChange} />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Problem</Form.Label>
+          <Form.Control as="textarea" rows={3} value={state.problem} placeholder="Problems that my Idea solves" name="problem" onChange={handleIdeaChange} />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Sphere</Form.Label>
+          <Form.Control type="text" value={state.sphere} placeholder="Sphere of my Idea" name="sphere" onChange={handleIdeaChange} />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Geo Focus</Form.Label>
+          <Form.Control type="text" value={state.geo_focus} placeholder="Geo focus of my Idea" name="geo_focus" onChange={handleIdeaChange} />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Investor Requirements</Form.Label>
+          <Form.Control as="textarea" rows={3} value={state.investor_requirements} placeholder="Requirements from the investor" name="investor_requirements" onChange={handleIdeaChange} />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Our team</Form.Label>
+          <Form.Control as="textarea" rows={3} value={state.team} placeholder="List of our team" name="team" onChange={handleIdeaChange} />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Steps of out Idea</Form.Label>
+          <Form.Control as="textarea" value={state.next_steps} rows={3} placeholder="List of steps" name="next_steps" onChange={handleIdeaChange} />
+        </Form.Group>
+        <Button variant="success" type="submit">
+          Update
+        </Button>
+      </Form>
+    </Container>
   );
 }

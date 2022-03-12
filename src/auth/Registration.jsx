@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { registrationRequest } from '../apiRequests/CustomerRequests';
+import Errors from '../Errors';
 
 export default function Registration(props) {
   const [state, setState] = useState({
     email: '',
     password: '',
     password_confirmation: '',
-    registrationErrors: '',
     name: '',
     surname: '',
     phone_number: '',
     skype: '',
     role: '',
   });
+  const [error, setErrors] = useState([]);
 
   async function formSubmit() {
     const response = await registrationRequest(
@@ -26,8 +27,11 @@ export default function Registration(props) {
       state.phone_number,
       state.skype,
     );
-    if (response.data.status === 201) {
+    const { data: { status, errors } } = response;
+    if (status === 201) {
       props.handleSuccessfulAuth(response.data);
+    } else {
+      setErrors(errors);
     }
   }
 
@@ -46,6 +50,9 @@ export default function Registration(props) {
 
   return (
     <Container>
+      { error.length !== 0 ? (
+        <Errors errors={error} />
+      ) : (null) }
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>Email address</Form.Label>

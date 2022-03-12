@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { loginRequest } from '../apiRequests/CustomerRequests';
+import Errors from '../Errors';
 
 export default function Login(props) {
   const [state, setState] = useState({
     email: '',
     password: '',
-    loginErrors: '',
   });
+  const [error, setErrors] = useState([]);
   async function formSubmit(event) {
     const response = await loginRequest(state.email, state.password);
-    if (response.data.status === 201) {
+    const { data: { status, errors } } = response;
+    if (status === 201) {
       props.handleSuccessfulAuth(response.data);
+    } else {
+      setErrors([errors]);
     }
   }
 
@@ -30,6 +34,9 @@ export default function Login(props) {
 
   return (
     <Container>
+      { error.length !== 0 ? (
+        <Errors errors={error} />
+      ) : (null) }
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>Email address</Form.Label>

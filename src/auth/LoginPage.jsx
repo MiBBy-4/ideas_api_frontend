@@ -11,7 +11,7 @@ export default function LoginPage(props) {
 
   return (
     <div>
-      <h1>Login</h1>
+      <h1 className="text-center">Login</h1>
       <Login handleSuccessfulAuth={handleSuccessfulAuth} />
     </div>
   );

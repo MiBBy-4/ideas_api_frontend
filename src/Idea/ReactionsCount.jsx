@@ -11,7 +11,7 @@ export function likesCount(reactions) {
 
 export function dislikesCount(reactions) {
   return reactions.reduce((count, reaction) => {
-    if (!reaction.liked) {
+    if (!reaction.liked && reaction.liked !== null) {
       count += 1;
     }
     return count;

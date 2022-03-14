@@ -83,7 +83,7 @@ function App() {
         { state.isLoggedIn ? (
           <Routes>
             <Route
-              path={'/ideas/*'}
+              path={'/ideas'}
               element={<IdeaList isLoggedIn={state.isLoggedIn} />}
             />
             <Route
@@ -99,10 +99,6 @@ function App() {
               element={<Home handleLogin={handleLogin} handleLogout={handleLogout} isLoggedIn={state.isLoggedIn} />}
             />
             <Route
-              path={'/dashboard'}
-              element={<Dashboard isLoggedIn={state.isLoggedIn} />}
-            />
-            <Route
               path={'/registration'}
               element={<ErrorPage />}
             />
@@ -114,7 +110,7 @@ function App() {
         ) : (
           <Routes>
             <Route
-              path={'/ideas/*'}
+              path={'/ideas'}
               element={<ErrorPage />}
             />
             <Route
@@ -128,10 +124,6 @@ function App() {
             <Route
               path={'/'}
               element={<Home handleLogin={handleLogin} handleLogout={handleLogout} isLoggedIn={state.isLoggedIn} />}
-            />
-            <Route
-              path={'/dashboard'}
-              element={<ErrorPage />}
             />
             <Route
               path={'/registration'}

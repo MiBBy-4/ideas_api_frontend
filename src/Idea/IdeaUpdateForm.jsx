@@ -80,7 +80,7 @@ export default function IdeaUpdateForm(props) {
           <Form.Control as="textarea" rows={3} value={state.team} placeholder="List of our team" name="team" onChange={handleIdeaChange} />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Steps of out Idea</Form.Label>
+          <Form.Label>Steps of our Idea</Form.Label>
           <Form.Control as="textarea" value={state.next_steps} rows={3} placeholder="List of steps" name="next_steps" onChange={handleIdeaChange} />
         </Form.Group>
         <Button variant="success" type="submit">

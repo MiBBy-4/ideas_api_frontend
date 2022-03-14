@@ -36,7 +36,7 @@ export default function Home(props) {
               <Card.Body>
                 <Card.Title>You are not logged in</Card.Title>
                 <Card.Text>
-                  For use all functional of out service, you should be logged in.
+                  For use all functional of our service, you should be logged in.
                 </Card.Text>
                 <Link className="btn btn-primary mx-2" to={'/login'}>Login</Link>
                 <Link className="btn btn-success" to={'/registration'}>Registration</Link>

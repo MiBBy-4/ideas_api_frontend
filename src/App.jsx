@@ -9,7 +9,6 @@ import { sessionRequest } from './apiRequests/CustomerRequests';
 import Home from './Home';
 import IdeaShow from './Idea/IdeaShow';
 import IdeaNew from './Idea/IdeaNew';
-import Dashboard from './Dashboard';
 import LoginPage from './auth/LoginPage';
 import RegistrationPage from './auth/RegistrationPage';
 import ErrorPage from './auth/ErrorPage';

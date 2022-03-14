@@ -11,7 +11,7 @@ export default function RegistrationPage(props) {
 
   return (
     <div>
-      <h1>Registration</h1>
+      <h1 className="text-center">Registration</h1>
       <Registration handleSuccessfulAuth={handleSuccessfulAuth} />
     </div>
   );

@@ -15,8 +15,8 @@ import
   setReaction,
   updatePublicationPeriod,
   setResponse,
-  getResponse,
 } from '../apiRequests/IdeasRequests';
+import { likesCount, dislikesCount } from './ReactionsCount';
 import { deleteIdea } from '../apiRequests/AdminRequests';
 import { roles } from '../Roles';
 import { responsesCount } from './ResponsesCount';
@@ -106,8 +106,16 @@ export default function IdeaShow(props) {
             </ListGroupItem>
           </ListGroup>
           <Card.Body className="d-flex justify-content-center">
-            <Button variant="success" type="submit" onClick={() => handleClick(true)}>Like</Button>
-            <Button variant="danger" type="submit" onClick={() => handleClick(false)}>Dislike</Button>
+            <Button variant="success" type="submit" onClick={() => handleClick(true)}>
+              Like
+              { ' ' }
+              { idea.reactions ? (likesCount(idea.reactions)) : (null) }
+            </Button>
+            <Button variant="danger" type="submit" onClick={() => handleClick(false)}>
+              Dislike
+              { ' ' }
+              { idea.reactions ? (dislikesCount(idea.reactions)) : (null) }
+            </Button>
             { customer.role === roles('investor') ? (
               <div>
                 <Button variant="outline-success" onClick={() => handleInterestingButton()}>Interesting</Button>

@@ -25,6 +25,10 @@ export default function InvestorsModal(props) {
         <b>Email: </b>
         {invest.email}
       </p>
+      <p>
+        <b>Skype: </b>
+        {invest.skype}
+      </p>
       <hr />
     </div>
   );

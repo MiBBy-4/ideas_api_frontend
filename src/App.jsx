@@ -64,23 +64,12 @@ function App() {
     <div className="App">
       <header className="App-header">
         <IdeaNavbar isLoggedIn={state.isLoggedIn} handleLogout={handleLogout} customer={state.customer} />
-        { state.isLoggedIn && role === roles('admin') ? (
+        { state.isLoggedIn ? (
           <Routes>
             <Route
               path={'/ideas/:ideaId/update'}
               element={<IdeaUpdate />}
             />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route
-              path={'/ideas/:ideaId/update'}
-              element={<ErrorPage />}
-            />
-          </Routes>
-        )}
-        { state.isLoggedIn ? (
-          <Routes>
             <Route
               path={'/ideas'}
               element={<IdeaList isLoggedIn={state.isLoggedIn} />}

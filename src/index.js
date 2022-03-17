@@ -1,15 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
+const defaultStatus = {
+  isLoggedIn: false,
+};
+
+const reducer = (status = defaultStatus, action = 'setFalse') => {
+  switch (action.type) {
+    case 'setTrue':
+      return { ...status, isLoggedIn: true };
+    case 'setFalse':
+      return { ...status, isLoggedIn: false };
+    default:
+      return status;
+  }
+};
+const store = createStore(reducer);
+
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

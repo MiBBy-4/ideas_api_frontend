@@ -4,6 +4,7 @@ import {
   Route,
   useNavigate,
 } from 'react-router-dom';
+import { Navigate } from 'react-router';
 import IdeaList from './Idea/IdeaList';
 import { sessionRequest } from './apiRequests/CustomerRequests';
 import Home from './Home';
@@ -15,7 +16,6 @@ import ErrorPage from './auth/ErrorPage';
 import IdeaUpdate from './Idea/IdeaUpdate';
 import IdeaNavbar from './templates/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { roles } from './Roles';
 
 function App() {
   const [state, setState] = useState({
@@ -88,11 +88,11 @@ function App() {
             />
             <Route
               path={'/registration'}
-              element={<ErrorPage />}
+              element={<Navigate to="/" />}
             />
             <Route
               path={'/login'}
-              element={<ErrorPage />}
+              element={<Navigate to="/" />}
             />
           </Routes>
         ) : (

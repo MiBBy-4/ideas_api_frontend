@@ -9,8 +9,6 @@ import { useNavigate } from 'react-router';
 import { logoutRequest } from '../apiRequests/CustomerRequests';
 
 export default function IdeaNavbar(props) {
-  const { customer } = props;
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((status) => status.isLoggedIn);
 

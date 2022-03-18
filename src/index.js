@@ -13,9 +13,9 @@ const defaultStatus = {
 
 const reducer = (status = defaultStatus, action = 'setFalse') => {
   switch (action.type) {
-    case 'setTrue':
+    case 'setLoggedIn':
       return { ...status, isLoggedIn: true };
-    case 'setFalse':
+    case 'unSetLoggedIn':
       return { ...status, isLoggedIn: false };
     default:
       return status;

@@ -16,6 +16,7 @@ import RegistrationPage from './auth/RegistrationPage';
 import ErrorPage from './auth/ErrorPage';
 import IdeaUpdate from './Idea/IdeaUpdate';
 import IdeaNavbar from './templates/Navbar';
+import { loggedInStatus } from './LoggedInConsts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -24,19 +25,18 @@ function App() {
   });
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((status) => status.isLoggedIn);
-  console.log(isLoggedIn);
   const navigate = useNavigate();
 
   async function checkLoginStatus() {
     const response = await sessionRequest();
     const { data: { customer, logged_in } } = response;
     if (logged_in && !isLoggedIn) {
-      dispatch({ type: 'setTrue' });
+      dispatch({ type: loggedInStatus('loggedIn') });
       setState({
         customer: customer,
       });
     } else if (!logged_in && isLoggedIn) {
-      dispatch({ type: 'setFalse' });
+      dispatch({ type: loggedInStatus('notLoggedIn') });
       setState({
         customer: {},
       });
@@ -47,14 +47,14 @@ function App() {
     checkLoginStatus();
   });
   function handleLogin(data) {
-    dispatch({ type: 'setTrue' });
+    dispatch({ type: loggedInStatus('loggedIn') });
     setState({
       customer: data.customer,
     });
   }
 
   function handleLogout() {
-    dispatch({ type: 'setFalse' });
+    dispatch({ type: loggedInStatus('notLoggedIn') });
     setState({
       customer: {},
     });

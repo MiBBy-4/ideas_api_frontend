@@ -6,12 +6,13 @@ import { Provider } from 'react-redux';
 import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import { loggedInStatus } from './LoggedInConsts';
 
 const defaultStatus = {
   isLoggedIn: false,
 };
 
-const reducer = (status = defaultStatus, action = 'setFalse') => {
+const reducer = (status = defaultStatus, action = loggedInStatus('notLoggedIn')) => {
   switch (action.type) {
     case 'setLoggedIn':
       return { ...status, isLoggedIn: true };

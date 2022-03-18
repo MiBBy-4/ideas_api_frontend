@@ -4,6 +4,8 @@ import {
   Route,
   useNavigate,
 } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router';
 import IdeaList from './Idea/IdeaList';
 import { sessionRequest } from './apiRequests/CustomerRequests';
 import Home from './Home';
@@ -14,29 +16,28 @@ import RegistrationPage from './auth/RegistrationPage';
 import ErrorPage from './auth/ErrorPage';
 import IdeaUpdate from './Idea/IdeaUpdate';
 import IdeaNavbar from './templates/Navbar';
+import { loggedInStatus } from './LoggedInConsts';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { roles } from './Roles';
 
 function App() {
   const [state, setState] = useState({
-    isLoggedIn: false,
     customer: {},
   });
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((status) => status.isLoggedIn);
   const navigate = useNavigate();
-
-  const { customer: { role } } = state;
 
   async function checkLoginStatus() {
     const response = await sessionRequest();
     const { data: { customer, logged_in } } = response;
-    if (logged_in && !state.isLoggedIn) {
+    if (logged_in && !isLoggedIn) {
+      dispatch({ type: loggedInStatus('loggedIn') });
       setState({
-        isLoggedIn: true,
         customer: customer,
       });
-    } else if (!logged_in && state.isLoggedIn) {
+    } else if (!logged_in && isLoggedIn) {
+      dispatch({ type: loggedInStatus('notLoggedIn') });
       setState({
-        isLoggedIn: false,
         customer: {},
       });
     }
@@ -46,15 +47,15 @@ function App() {
     checkLoginStatus();
   });
   function handleLogin(data) {
+    dispatch({ type: loggedInStatus('loggedIn') });
     setState({
-      isLoggedIn: true,
       customer: data.customer,
     });
   }
 
   function handleLogout() {
+    dispatch({ type: loggedInStatus('notLoggedIn') });
     setState({
-      isLoggedIn: false,
       customer: {},
     });
     navigate('/');
@@ -63,8 +64,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <IdeaNavbar isLoggedIn={state.isLoggedIn} handleLogout={handleLogout} customer={state.customer} />
-        { state.isLoggedIn ? (
+        <IdeaNavbar handleLogout={handleLogout} customer={state.customer} />
+        { isLoggedIn ? (
           <Routes>
             <Route
               path={'/ideas/:ideaId/update'}
@@ -72,27 +73,27 @@ function App() {
             />
             <Route
               path={'/ideas'}
-              element={<IdeaList isLoggedIn={state.isLoggedIn} />}
+              element={<IdeaList />}
             />
             <Route
               path={'/ideas/:ideaId'}
-              element={<IdeaShow customer={state.customer} isLoggedIn={state.isLoggedIn} />}
+              element={<IdeaShow customer={state.customer} />}
             />
             <Route
               path={'/ideas/new'}
-              element={<IdeaNew customer={state.customer} isLoggedIn={state.isLoggedIn} />}
+              element={<IdeaNew customer={state.customer} />}
             />
             <Route
               path={'/'}
-              element={<Home handleLogin={handleLogin} handleLogout={handleLogout} isLoggedIn={state.isLoggedIn} />}
+              element={<Home handleLogin={handleLogin} handleLogout={handleLogout} />}
             />
             <Route
               path={'/registration'}
-              element={<ErrorPage />}
+              element={<Navigate to="/" />}
             />
             <Route
               path={'/login'}
-              element={<ErrorPage />}
+              element={<Navigate to="/" />}
             />
           </Routes>
         ) : (
@@ -111,15 +112,15 @@ function App() {
             />
             <Route
               path={'/'}
-              element={<Home handleLogin={handleLogin} handleLogout={handleLogout} isLoggedIn={state.isLoggedIn} />}
+              element={<Home handleLogin={handleLogin} handleLogout={handleLogout} />}
             />
             <Route
               path={'/registration'}
-              element={<RegistrationPage handleLogin={handleLogin} isLoggedIn={state.isLoggedIn} />}
+              element={<RegistrationPage handleLogin={handleLogin} />}
             />
             <Route
               path={'/login'}
-              element={<LoginPage handleLogin={handleLogin} isLoggedIn={state.isLoggedIn} />}
+              element={<LoginPage handleLogin={handleLogin} />}
             />
           </Routes>
         ) }

@@ -17,11 +17,11 @@ export default function IdeaUpdate() {
   function handleHomeClick() {
     navigate('/');
   }
-
   return (
     <Container>
       <h1 className="text-center">
         Update
+        { ' ' }
         { idea.name }
       </h1>
       <IdeaUpdateForm idea={idea} />

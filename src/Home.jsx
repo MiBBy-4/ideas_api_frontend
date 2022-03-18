@@ -6,10 +6,13 @@ import {
   Card,
   Button,
 } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { logoutRequest } from './apiRequests/CustomerRequests';
 
 export default function Home(props) {
-  const { isLoggedIn } = props;
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((status) => status.isLoggedIn);
+
   async function handleLogoutClick() {
     const response = await logoutRequest();
     if (response.data.logged_out) {

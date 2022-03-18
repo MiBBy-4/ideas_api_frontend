@@ -4,12 +4,13 @@ import {
   Nav,
   NavDropdown,
 } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { logoutRequest } from '../apiRequests/CustomerRequests';
 
 export default function IdeaNavbar(props) {
-  const { isLoggedIn, customer } = props;
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((status) => status.isLoggedIn);
 
   async function handleLogoutClick() {
     const response = await logoutRequest();
